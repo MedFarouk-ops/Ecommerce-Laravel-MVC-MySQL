@@ -12,4 +12,21 @@ class ClientController extends Controller
     {
         return view('Client.layouts.client');
     }
+
+    public function cart()
+    {
+        return view('Client.cart.index'); // 
+    }
+
+      // Show login page
+    public function showLogin()
+    {
+        return view('Client.auth.login');
+    }
+
+    // Show registration page
+    public function showRegister()
+    {
+        return view('Client.auth.register');
+    }
 }

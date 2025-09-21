@@ -12,4 +12,9 @@ class AdminController extends Controller
     {
         return view('Admin.layouts.admin');
     }
+
+    public function showLogin()
+    {
+        return view('Admin.auth.login');
+    }
 }

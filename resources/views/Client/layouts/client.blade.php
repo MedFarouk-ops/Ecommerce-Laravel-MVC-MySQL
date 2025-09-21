@@ -33,8 +33,8 @@
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav align-items-center">
-                <li class="nav-item"><a class="nav-link text-dark" href="#">Products</a></li>
-                <li class="nav-item"><a class="nav-link text-dark" href="#">Cart</a></li>
+                <li class="nav-item"><a class="nav-link text-dark" href="{{ route('client.dashboard') }}">Products</a></li>
+               <li class="nav-item"><a class="nav-link text-dark" href="{{ route('client.cart') }}">Cart</a></li>
                 <li class="nav-item"><a class="nav-link text-dark" href="#">Login</a></li>
             </ul>
         </div>

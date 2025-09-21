@@ -220,3 +220,11 @@ footer {
         width: 90%;
     }
 }
+
+
+/* client.css */
+.btn-secondary:hover {
+    background-color: #5a5a5a;
+    color: #fff;
+    transition: 0.3s;
+}
