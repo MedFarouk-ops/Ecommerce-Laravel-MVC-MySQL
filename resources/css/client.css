@@ -1,0 +1,222 @@
+/* ===============================
+   Farouk Electronics - Client CSS
+   Win11 / Electronics Theme
+   =============================== */
+
+/* Body */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f3f4f6;
+    margin: 0;
+    color: #1f2937;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border-radius: 0 0 12px 12px;
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0078d4;
+}
+
+.nav-links a {
+    margin-left: 1rem;
+    text-decoration: none;
+    color: #1f2937;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.nav-links a:hover {
+    background: #e5e7eb;
+    color: #0078d4;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    background: linear-gradient(135deg, #0078d4, #00a1f1);
+    color: white;
+    padding: 4rem 2rem;
+    margin: 2rem;
+    border-radius: 12px;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.hero-buttons a {
+    display: inline-block;
+    margin: 0 0.5rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.hero .button {
+    background: #ffffff;
+    color: #0078d4;
+}
+
+.hero .button:hover {
+    background: #e5e7eb;
+}
+
+.hero .button-outline {
+    border: 2px solid #ffffff;
+    color: white;
+}
+
+.hero .button-outline:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Search & Categories */
+.search-category {
+    text-align: center;
+    margin: 2rem;
+}
+
+.search-bar {
+    padding: 0.8rem 1rem;
+    width: 60%;
+    max-width: 500px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.categories {
+    margin-top: 1rem;
+}
+
+.category {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    margin: 0 0.3rem 0.5rem 0.3rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.category:hover,
+.category.active {
+    background: #0078d4;
+    color: white;
+    border-color: #0078d4;
+}
+
+/* Products Section */
+.products-section {
+    padding: 2rem;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #111827;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* Glass Style */
+.glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+}
+
+/* Product Elements */
+.card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #111827;
+}
+
+.card p.price {
+    font-weight: 700;
+    color: #0078d4;
+    margin-bottom: 1rem;
+}
+
+.card button {
+    background: #0078d4;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.card button:hover {
+    background: #005ea3;
+}
+
+/* Footer */
+footer {
+    background: #ffffff;
+    text-align: center;
+    padding: 1.5rem;
+    color: #6b7280;
+    border-radius: 12px 12px 0 0;
+    margin-top: 2rem;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .search-bar {
+        width: 90%;
+    }
+}

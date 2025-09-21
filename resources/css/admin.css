@@ -1,0 +1,186 @@
+/* ==========================
+   ADMIN DASHBOARD 2025 STYLE
+   Windows 11 / SaaS Modern Look
+   ========================== */
+
+/* Body */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f3f4f6;
+    color: #1f2937;
+    overflow-x: hidden;
+}
+
+/* Scrollbar */
+body::-webkit-scrollbar {
+    width: 10px;
+}
+body::-webkit-scrollbar-track {
+    background: transparent;
+}
+body::-webkit-scrollbar-thumb {
+    background-color: rgba(100,100,100,0.3);
+    border-radius: 10px;
+}
+
+/* -------------------------
+   Sidebar
+------------------------- */
+.sidebar {
+    width: 260px;
+    min-height: 100vh;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+    border-radius: 0 20px 20px 0;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.sidebar h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    font-weight: 500;
+    color: #1f2937;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: white;
+    box-shadow: 0 8px 20px rgba(37,99,235,0.25);
+}
+
+/* Sidebar Icons Placeholder */
+.sidebar a svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* -------------------------
+   Top Navbar
+------------------------- */
+.top-navbar {
+    height: 60px;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+}
+
+/* -------------------------
+   Cards
+------------------------- */
+.card-stats {
+    background: rgba(255,255,255,0.65);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.card-stats:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+.card-orders { border-left: 6px solid #2563eb; }
+.card-revenue { border-left: 6px solid #16a34a; }
+.card-growth { border-left: 6px solid #facc15; }
+
+/* Card icons */
+.card-stats .icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2.5rem;
+    opacity: 0.2;
+}
+
+/* -------------------------
+   Table
+------------------------- */
+.table-container {
+    background: rgba(255,255,255,0.65);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    overflow-x: auto;
+}
+
+.table thead tr {
+    border-bottom: none;
+}
+
+.table thead th {
+    border: none;
+    color: #2563eb;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.table tbody tr {
+    transition: background 0.3s ease;
+    cursor: pointer;
+}
+
+.table tbody tr:hover {
+    background: rgba(37,99,235,0.08);
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 999px;
+    color: white;
+}
+
+.badge-success { background: #16a34a; }
+.badge-warning { background: #facc15; }
+.badge-danger { background: #dc2626; }
+
+/* Buttons */
+.btn-modern {
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: white;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-modern:hover {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    box-shadow: 0 8px 25px rgba(37,99,235,0.25);
+}
+
+/* Responsive Cards Grid */
+@media (max-width: 768px) {
+    .grid-dashboard {
+        grid-template-columns: 1fr !important;
+    }
+}
