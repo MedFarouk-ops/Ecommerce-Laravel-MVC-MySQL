@@ -1,39 +1,48 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\AdminCategoryController;
-use App\Http\Controllers\Admin\AdminProductController;
-// Client Routes
 use App\Http\Controllers\Client\ClientController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Middleware\RoleMiddleware;
 
-// Redirect root '/' to client dashboard
-Route::get('/', function () {
-    return redirect()->route('client.dashboard');
+// Default route → Client page (no auth required)
+Route::get('/', [ClientController::class, 'index'])->name('client.home');
+
+// Dashboard (only for logged in users)
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+// Authenticated routes
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Admin routes
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/', [AdminController::class, 'index'])->name('dashboard');
-    Route::get('/categories', [AdminCategoryController::class, 'index'])->name('categories');
-    Route::get('/products', [AdminProductController::class, 'index'])->name('products');
 
-    // Admin Login
-    Route::get('/login', [AdminController::class, 'showLogin'])->name('login');
-    // You can add a POST route for login processing later
-    // Route::post('/login', [AdminController::class, 'login'])->name('login.submit');
+// Admin routes (only accessible by users with role 'admin')
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+
+    Route::get('/categories', function () {
+        return view('Admin.categories.index');
+    })->name('categories');
+   
+    Route::get('/products', function () {
+        return view('Admin.products.index');
+    })->name('products');
+
+    Route::get('/orders', function () {
+        return view('Admin.orders.index');
+    })->name('orders');
 });
+
 
 // Client routes
-Route::prefix('client')->name('client.')->group(function () {
-    Route::get('/', [ClientController::class, 'index'])->name('dashboard');
-    Route::get('/cart', [ClientController::class, 'cart'])->name('cart');
+Route::get('/client/dashboard', [ClientController::class, 'index'])->name('client.dashboard');
+Route::get('/client/cart', [ClientController::class, 'cart'])->name('client.cart');
 
-    // Client Login & Registration
-    Route::get('/login', [ClientController::class, 'showLogin'])->name('login');
-    Route::get('/register', [ClientController::class, 'showRegister'])->name('register');
-    // You can add POST routes for login/register processing later
-    // Route::post('/login', [ClientController::class, 'login'])->name('login.submit');
-    // Route::post('/register', [ClientController::class, 'register'])->name('register.submit');
-});
+// Laravel auth routes
+require __DIR__.'/auth.php';

@@ -1,0 +1,3 @@
+<a href="/" class="text-2xl font-bold text-indigo-600 hover:text-indigo-800">
+    Farouk Electronics
+</a>

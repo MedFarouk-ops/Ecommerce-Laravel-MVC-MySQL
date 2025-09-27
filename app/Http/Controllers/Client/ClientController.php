@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
+    public function __construct()
+    {
+        // Empty constructor
+    }
+
     // Show admin dashboard
     public function index()
     {
@@ -29,4 +34,6 @@ class ClientController extends Controller
     {
         return view('Client.auth.register');
     }
+
+ 
 }
