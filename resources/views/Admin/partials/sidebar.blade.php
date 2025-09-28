@@ -16,12 +16,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.categories') }}" class="nav-item {{ request()->routeIs('admin.categories') ? 'active' : '' }}">
+                    <a href="{{ route('admin.categories.index') }}" class="nav-item {{ request()->routeIs('admin.categories') ? 'active' : '' }}">
                         <i class="fas fa-layer-group"></i> Categories
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.products') }}" class="nav-item {{ request()->routeIs('admin.products') ? 'active' : '' }}">
+                    <a href="{{ route('admin.products.index') }}" class="nav-item {{ request()->routeIs('admin.products') ? 'active' : '' }}">
                         <i class="fas fa-box-open"></i> Products
                     </a>
                 </li>

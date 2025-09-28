@@ -91,14 +91,17 @@
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
                 </div>
                 <div class="position-sticky pt-3">
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><button class="btn btn-outline-dark w-100 active">All</button></li>
-                        <li class="nav-item mb-2"><button class="btn btn-outline-dark w-100">Headsets</button></li>
-                        <li class="nav-item mb-2"><button class="btn btn-outline-dark w-100">Chargers</button></li>
-                        <li class="nav-item mb-2"><button class="btn btn-outline-dark w-100">Speakers</button></li>
-                        <li class="nav-item mb-2"><button class="btn btn-outline-dark w-100">Smart Watches</button></li>
-                        <li class="nav-item mb-2"><button class="btn btn-outline-dark w-100">Accessories</button></li>
+                    <ul class="nav flex-column" id="categoryList">
+                        <li class="nav-item mb-2">
+                            <button class="btn btn-outline-dark w-100 active" data-category="all">All</button>
+                        </li>
+                        @foreach($categories as $category)
+                        <li class="nav-item mb-2">
+                            <button class="btn btn-outline-dark w-100" data-category="{{ $category->id }}">{{ $category->name }}</button>
+                        </li>
+                        @endforeach
                     </ul>
+
                 </div>
             </nav>
 
@@ -113,41 +116,21 @@
                     <input type="text" class="form-control" placeholder="Search products..." id="mobileSearch">
                 </div>
 
-                <!-- Products Grid -->
-                <div class="row g-4">
-                    <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="row g-4" id="productGrid">
+                    @foreach($products as $product)
+                    <div class="col-sm-6 col-md-4 col-lg-3 product-card" data-category="{{ $product->category_id }}">
                         <div class="card glass-card h-100 text-center p-3 shadow-hover">
-                            <i class="bi bi-headphones display-1 mb-2 text-primary"></i>
-                            <h5 class="card-title">Wireless Headset</h5>
-                            <p class="text-success fw-bold">20 DT</p>
+                            <i class="bi bi-box display-1 mb-2 text-primary"></i>
+                            <h5 class="card-title">{{ $product->name }}</h5>
+                            <p class="text-success fw-bold">{{ $product->price }} DT</p>
+                            <p class="text-muted">Stock: {{ $product->stock }}</p>
                             <button class="btn btn-outline-primary btn-sm">Add to Cart</button>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="card glass-card h-100 text-center p-3 shadow-hover">
-                            <i class="bi bi-battery-charging display-1 mb-2 text-warning"></i>
-                            <h5 class="card-title">Smart Charger</h5>
-                            <p class="text-success fw-bold">15 DT</p>
-                            <button class="btn btn-outline-primary btn-sm">Add to Cart</button>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="card glass-card h-100 text-center p-3 shadow-hover">
-                            <i class="bi bi-speaker display-1 mb-2 text-danger"></i>
-                            <h5 class="card-title">Bluetooth Speaker</h5>
-                            <p class="text-success fw-bold">35 DT</p>
-                            <button class="btn btn-outline-primary btn-sm">Add to Cart</button>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="card glass-card h-100 text-center p-3 shadow-hover">
-                            <i class="bi bi-watch display-1 mb-2 text-info"></i>
-                            <h5 class="card-title">Smart Watch</h5>
-                            <p class="text-success fw-bold">50 DT</p>
-                            <button class="btn btn-outline-primary btn-sm">Add to Cart</button>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
+
+
             </main>
         </div>
     </div>
@@ -170,6 +153,29 @@
             mobileSearchContainer.querySelector('input').focus();
         });
     </script>
+
+    <script>
+    const categoryButtons = document.querySelectorAll('#categoryList button');
+    const productCards = document.querySelectorAll('.product-card');
+
+    categoryButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all buttons
+            categoryButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const categoryId = btn.getAttribute('data-category');
+
+            productCards.forEach(card => {
+                if(categoryId === 'all' || card.getAttribute('data-category') === categoryId){
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
 </body>
 
 

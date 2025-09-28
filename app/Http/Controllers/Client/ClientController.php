@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\Product;
 
 class ClientController extends Controller
 {
@@ -12,11 +14,15 @@ class ClientController extends Controller
         // Empty constructor
     }
 
-    // Show admin dashboard
+   // Show client landing page
     public function index()
     {
-        return view('Client.layouts.client');
+        $categories = Category::all();               // Get all categories
+        $products   = Product::with('category')->get(); // Get all products with their category
+
+        return view('Client.layouts.client', compact('categories', 'products'));
     }
+
 
     public function cart()
     {
