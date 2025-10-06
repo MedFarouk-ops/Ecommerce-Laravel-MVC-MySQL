@@ -27,35 +27,63 @@ class AdminProductController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
             'category_id' => 'required|exists:categories,id',
+            'photo1' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'photo2' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
 
-        Product::create($request->all());
+        $data = $request->all();
+
+        // Handle photo uploads
+        if ($request->hasFile('photo1')) {
+            $data['photo1'] = $request->file('photo1')->store('products', 'public');
+        }
+
+        if ($request->hasFile('photo2')) {
+            $data['photo2'] = $request->file('photo2')->store('products', 'public');
+        }
+
+        Product::create($data);
 
         return redirect()->route('admin.products.index')
                          ->with('success', 'Product created successfully!');
     }
 
-        public function edit(Product $product)
-        {
-            $categories = Category::all();
-            return view('Admin.products.edit', compact('product', 'categories'));
+    public function edit(Product $product)
+    {
+        $categories = Category::all();
+        return view('Admin.products.edit', compact('product', 'categories'));
+    }
+
+    public function update(Request $request, Product $product)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
+            'category_id' => 'required|exists:categories,id',
+            'photo1' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'photo2' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+        ]);
+
+        $data = $request->all();
+
+        // Handle updated photo uploads
+        if ($request->hasFile('photo1')) {
+            $data['photo1'] = $request->file('photo1')->store('products', 'public');
         }
 
-        public function update(Request $request, Product $product)
-        {
-            $request->validate([
-                'name' => 'required|string|max:255',
-                'description' => 'nullable|string',
-                'price' => 'required|numeric|min:0',
-                'stock' => 'required|integer|min:0',
-                'category_id' => 'required|exists:categories,id',
-            ]);
-
-            $product->update($request->all());
-
-            return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
+        if ($request->hasFile('photo2')) {
+            $data['photo2'] = $request->file('photo2')->store('products', 'public');
         }
+
+        $product->update($data);
+
+        return redirect()->route('admin.products.index')
+                         ->with('success', 'Product updated successfully.');
+    }
 
     public function destroy(Product $product)
     {

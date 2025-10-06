@@ -228,3 +228,21 @@ footer {
     color: #fff;
     transition: 0.3s;
 }
+
+.product-image-wrapper {
+    width: 150px;            /* fixed width */
+    height: 120px;           /* fixed height */
+    margin: 0 auto;
+    overflow: hidden;        /* crop excess image */
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-image-wrapper img.product-image {
+    width: 100%;             /* fill the box */
+    height: 100%;            /* fill the box */
+    object-fit: cover;       /* crop while keeping aspect ratio */
+}

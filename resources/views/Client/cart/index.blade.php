@@ -134,7 +134,7 @@ body {
             <hr>
             <p class="mb-3">Total: <span id="total" class="fw-bold">0 DT</span></p>
              @auth
-                <a href="{{ route('checkout') }}" class="btn btn-checkout w-100">Proceed to Checkout</a>
+                <a href="#" class="btn btn-checkout w-100">Proceed to Checkout</a>
             @endauth
 
             @guest

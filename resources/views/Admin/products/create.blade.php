@@ -17,7 +17,8 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.products.store') }}" method="POST" class="space-y-4">
+    {{-- Added enctype for image uploads --}}
+    <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
         @csrf
 
         <div>
@@ -59,6 +60,20 @@
                     </option>
                 @endforeach
             </select>
+        </div>
+
+        {{-- 🖼️ Photo 1 Upload --}}
+        <div>
+            <label for="photo1" class="block text-gray-700 font-medium">Photo 1</label>
+            <input type="file" name="photo1" id="photo1" accept="image/*"
+                   class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400">
+        </div>
+
+        {{-- 🖼️ Photo 2 Upload --}}
+        <div>
+            <label for="photo2" class="block text-gray-700 font-medium">Photo 2</label>
+            <input type="file" name="photo2" id="photo2" accept="image/*"
+                   class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400">
         </div>
 
         <div class="flex justify-end gap-3">

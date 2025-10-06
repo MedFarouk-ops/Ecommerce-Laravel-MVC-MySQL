@@ -41,5 +41,9 @@ class ClientController extends Controller
         return view('Client.auth.register');
     }
 
+    public function show_product(Product $product)
+    {
+        return view('client.products.index', compact('product'));
+    }
  
 }

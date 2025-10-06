@@ -50,9 +50,15 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
 });
 
 
-// Client routes
-Route::get('/client/dashboard', [ClientController::class, 'index'])->name('client.dashboard');
-Route::get('/client/cart', [ClientController::class, 'cart'])->name('client.cart');
+// Client routes (all prefixed with 'client' and named 'client.*')
+Route::prefix('client')->name('client.')->middleware(['auth'])->group(function () {
+    // Dashboard / Products list
+    Route::get('/dashboard', [ClientController::class, 'index'])->name('dashboard');
+    // Cart page
+    Route::get('/cart', [ClientController::class, 'cart'])->name('cart');
+    // Product show page
+    Route::get('/product/{product}', [ClientController::class, 'show_product'])->name('product.show');
+});
 
 // Laravel auth routes
 require __DIR__.'/auth.php';

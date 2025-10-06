@@ -127,14 +127,28 @@
                 <div class="row g-4" id="productGrid">
                     @foreach($products as $product)
                     <div class="col-sm-6 col-md-4 col-lg-3 product-card" data-category="{{ $product->category_id }}" data-id="{{ $product->id }}">
-                        <div class="card glass-card h-100 text-center p-3 shadow-hover">
-                            <i class="bi bi-box display-1 mb-2 text-primary"></i>
-                            <h5 class="card-title">{{ $product->name }}</h5>
-                            <p class="text-success fw-bold">{{ $product->price }} DT</p>
-                            <p class="text-muted">Stock: {{ $product->stock }}</p>
-                            <button class="btn btn-outline-primary btn-sm add-to-cart-btn">Add to Cart</button>
-                        </div>
+                    <div class="card glass-card h-100 text-center p-3 shadow-hover">
+                      <div class="product-image-wrapper mb-2">
+                            @if($product->photo1)
+                                <img src="{{ asset('storage/' . $product->photo1) }}" 
+                                    alt="{{ $product->name }}" 
+                                    class="product-image img-fluid">
+                            @else
+                                <i class="bi bi-box display-1 text-primary"></i>
+                            @endif
+                      </div>
+                        <h5 class="card-title">{{ $product->name }}</h5>
+                        <p class="text-success fw-bold">{{ $product->price }} DT</p>
+                        <p class="text-muted">Stock: {{ $product->stock }}</p>                
                     </div>
+
+                    <div class="mt-auto d-grid gap-2">
+                        <button class="btn btn-outline-primary btn-sm add-to-cart-btn w-100">Add to Cart</button>
+                        <a href="{{ route('client.product.show', $product->id) }}" class="btn btn-primary btn-sm w-100">View Details</a>
+                    </div>
+                    
+                </div>
+
                     @endforeach
                 </div>
             </main>

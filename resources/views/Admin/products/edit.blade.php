@@ -17,7 +17,8 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.products.update', $product->id) }}" method="POST" class="space-y-4">
+    {{-- Added enctype for image upload --}}
+    <form action="{{ route('admin.products.update', $product->id) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
         @csrf
         @method('PUT')
 
@@ -60,6 +61,30 @@
                     </option>
                 @endforeach
             </select>
+        </div>
+
+        {{-- 🖼️ Photo 1 --}}
+        <div>
+            <label for="photo1" class="block text-gray-700 font-medium">Photo 1</label>
+            @if ($product->photo1)
+                <div class="mb-2">
+                    <img src="{{ asset('storage/' . $product->photo1) }}" alt="Photo 1" class="w-32 h-32 object-cover rounded-md border">
+                </div>
+            @endif
+            <input type="file" name="photo1" id="photo1" accept="image/*"
+                   class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400">
+        </div>
+
+        {{-- 🖼️ Photo 2 --}}
+        <div>
+            <label for="photo2" class="block text-gray-700 font-medium">Photo 2</label>
+            @if ($product->photo2)
+                <div class="mb-2">
+                    <img src="{{ asset('storage/' . $product->photo2) }}" alt="Photo 2" class="w-32 h-32 object-cover rounded-md border">
+                </div>
+            @endif
+            <input type="file" name="photo2" id="photo2" accept="image/*"
+                   class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400">
         </div>
 
         <div class="flex justify-end gap-3">
