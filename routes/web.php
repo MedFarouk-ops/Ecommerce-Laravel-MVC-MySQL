@@ -10,11 +10,8 @@ use App\Http\Middleware\RoleMiddleware;
 
 // Default route → Client page (no auth required)
 Route::get('/', [ClientController::class, 'index'])->name('client.home');
-
 // Dashboard (only for logged in users)
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [ClientController::class, 'index'])->name('client.home');
 
 // Authenticated routes
 Route::middleware('auth')->group(function () {
@@ -52,12 +49,18 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
 
 // Client routes (all prefixed with 'client' and named 'client.*')
 Route::prefix('client')->name('client.')->middleware(['auth'])->group(function () {
+    Route::get('/checkout', [ClientController::class, 'checkout'])->name('checkout');
+    Route::get('/orders', [ClientController::class, 'orders'])->name('orders');
+});
+
+// Routes that are public (no login required)
+Route::prefix('client')->name('client.')->group(function () {
     // Dashboard / Products list
     Route::get('/dashboard', [ClientController::class, 'index'])->name('dashboard');
-    // Cart page
-    Route::get('/cart', [ClientController::class, 'cart'])->name('cart');
     // Product show page
     Route::get('/product/{product}', [ClientController::class, 'show_product'])->name('product.show');
+     // Cart page
+    Route::get('/cart', [ClientController::class, 'cart'])->name('cart');
 });
 
 // Laravel auth routes

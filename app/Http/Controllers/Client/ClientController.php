@@ -45,5 +45,15 @@ class ClientController extends Controller
     {
         return view('client.products.index', compact('product'));
     }
+
+    public function checkout(Product $product)
+    {
+        return view('client.cart.checkout', compact('product'));
+    }
+
+    public function orders(Product $product)
+    {
+        return view('client.cart.orders', compact('product'));
+    }
  
 }

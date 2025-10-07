@@ -1,0 +1,527 @@
+/* ===============================
+   Orders Page - Dedicated CSS
+   Farouk Electronics
+   =============================== */
+
+/* ===============================
+   Page Header
+   =============================== */
+
+.page-header {
+    background: white;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.page-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--dark-text, #1f2937);
+    margin: 0;
+}
+
+.page-header .btn-group .btn {
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0.5rem 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.page-header .btn-group .btn.active {
+    background: var(--primary-color, #0078d4);
+    color: white;
+    border-color: var(--primary-color, #0078d4);
+}
+
+/* ===============================
+   Order Card
+   =============================== */
+
+.order-card {
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: white;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.order-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12) !important;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.order-card .card-header {
+    padding: 1.25rem 1.5rem;
+}
+
+.order-card .card-body {
+    padding: 1.5rem;
+}
+
+.order-card .card-footer {
+    padding: 1rem 1.5rem;
+}
+
+.order-id {
+    color: var(--primary-color, #0078d4);
+    font-size: 1.1rem;
+}
+
+/* ===============================
+   Status Badges
+   =============================== */
+
+.status-badge {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.status-pending {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    color: white;
+}
+
+.status-processing {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    color: white;
+}
+
+.status-shipped {
+    background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+    color: white;
+}
+
+.status-delivered {
+    background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+    color: white;
+}
+
+.status-cancelled {
+    background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+    color: white;
+}
+
+/* ===============================
+   Order Progress Tracker
+   =============================== */
+
+.order-progress {
+    padding: 2rem 1rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+}
+
+.progress-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.progress-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid #d1d5db;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #9ca3af;
+    transition: all 0.4s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.progress-step.completed .progress-icon {
+    background: linear-gradient(135deg, #0078d4 0%, #00a1f1 100%);
+    border-color: #0078d4;
+    color: white;
+    animation: scaleIn 0.5s ease;
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0.8);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.progress-label {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #6b7280;
+    text-align: center;
+}
+
+.progress-step.completed .progress-label {
+    color: #0078d4;
+}
+
+.progress-line {
+    flex: 1;
+    height: 3px;
+    background: #d1d5db;
+    position: relative;
+    margin: 0 -10px;
+    z-index: 1;
+    transition: all 0.4s ease;
+}
+
+.progress-line.completed {
+    background: linear-gradient(90deg, #0078d4 0%, #00a1f1 100%);
+}
+
+/* Mobile Progress Tracker */
+@media (max-width: 768px) {
+    .progress-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .progress-step {
+        flex-direction: row;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .progress-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+        margin-right: 1rem;
+    }
+
+    .progress-label {
+        margin-top: 0;
+        text-align: left;
+        flex: 1;
+    }
+
+    .progress-line {
+        position: absolute;
+        left: 25px;
+        top: 50px;
+        width: 3px;
+        height: 40px;
+        margin: 0;
+    }
+
+    .progress-step:last-child .progress-line {
+        display: none;
+    }
+}
+
+/* ===============================
+   Order Items
+   =============================== */
+
+.order-items {
+    background: #f9fafb;
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.order-item-row {
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.order-item-row:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateX(5px);
+}
+
+.item-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.placeholder-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+}
+
+.placeholder-image i {
+    font-size: 2rem;
+    color: #9ca3af;
+}
+
+/* ===============================
+   Order Summary
+   =============================== */
+
+.order-summary {
+    padding-top: 1.5rem;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+}
+
+.summary-row span {
+    color: #6b7280;
+}
+
+.summary-row strong {
+    color: #1f2937;
+}
+
+.summary-row.total-row {
+    padding-top: 0.75rem;
+    border-top: 2px solid #e5e7eb;
+    margin-top: 0.5rem;
+}
+
+/* ===============================
+   Action Buttons
+   =============================== */
+
+.btn-group .btn {
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background: var(--primary-color, #0078d4);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-outline-success:hover {
+    background: #10b981;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-outline-danger:hover {
+    background: #ef4444;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ===============================
+   Empty State
+   =============================== */
+
+.empty-state {
+    padding: 4rem 2rem;
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.empty-state i {
+    color: #d1d5db;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.empty-state h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* ===============================
+   Modal Enhancements
+   =============================== */
+
+.modal-content {
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header,
+.modal-footer {
+    background: #f9fafb;
+}
+
+.modal-title {
+    font-weight: 700;
+    color: #1f2937;
+}
+
+/* ===============================
+   Filter Buttons Animation
+   =============================== */
+
+.page-header .btn-group .btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.page-header .btn-group .btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(0, 120, 212, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s, height 0.5s;
+}
+
+.page-header .btn-group .btn:hover::before {
+    width: 200px;
+    height: 200px;
+}
+
+/* ===============================
+   Responsive Design
+   =============================== */
+
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .page-header .btn-group {
+        width: 100%;
+    }
+
+    .page-header .btn-group .btn {
+        flex: 1;
+        font-size: 0.85rem;
+        padding: 0.5rem 0.5rem;
+    }
+
+    .order-card .card-header .row > div {
+        text-align: left !important;
+    }
+
+    .order-progress {
+        padding: 1.5rem 0.75rem;
+    }
+
+    .item-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .summary-row {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .status-badge {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .order-items {
+        padding: 1rem;
+    }
+
+    .order-card .card-body {
+        padding: 1rem;
+    }
+}
+
+/* ===============================
+   Print Styles
+   =============================== */
+
+@media print {
+    .page-header .btn-group,
+    .card-footer,
+    .navbar,
+    footer {
+        display: none !important;
+    }
+
+    .order-card {
+        page-break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid #000;
+    }
+}
+
+/* ===============================
+   Accessibility
+   =============================== */
+
+.btn:focus,
+.btn:focus-visible {
+    outline: 2px solid #0078d4;
+    outline-offset: 2px;
+}
+
+.order-card:focus-within {
+    outline: 2px solid #0078d4;
+    outline-offset: 4px;
+}

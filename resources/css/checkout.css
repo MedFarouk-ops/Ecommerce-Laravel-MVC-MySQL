@@ -1,0 +1,419 @@
+/* ========================================
+   CHECKOUT PAGE STYLES
+   ======================================== */
+
+.checkout-container {
+    padding: 20px 0;
+}
+
+.checkout-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2c3e50;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 15px;
+}
+
+/* ========================================
+   CHECKOUT SECTIONS
+   ======================================== */
+
+.checkout-section {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e9ecef;
+}
+
+.section-header {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f1f3f5;
+}
+
+/* ========================================
+   FORM STYLES
+   ======================================== */
+
+.form-label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.form-control,
+.form-select {
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.15);
+}
+
+.input-group-text {
+    background-color: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-right: none;
+    color: #6c757d;
+}
+
+.input-group .form-control {
+    border-left: none;
+}
+
+.input-group .form-control:focus {
+    border-left: none;
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* ========================================
+   PAYMENT OPTIONS
+   ======================================== */
+
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.payment-option {
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.payment-option:hover:not(.disabled) {
+    border-color: #3498db;
+    background-color: #f8f9fa;
+}
+
+.payment-option.active {
+    border-color: #3498db;
+    background-color: #e3f2fd;
+}
+
+.payment-option.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: #f8f9fa;
+}
+
+.payment-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.payment-option label {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    margin: 0;
+    width: 100%;
+}
+
+.payment-option.disabled label {
+    cursor: not-allowed;
+}
+
+.payment-option label i {
+    font-size: 2rem;
+    color: #3498db;
+}
+
+.payment-option label > div {
+    flex: 1;
+}
+
+.payment-option label strong {
+    display: block;
+    font-size: 1.05rem;
+    color: #2c3e50;
+    margin-bottom: 3px;
+}
+
+.payment-option label small {
+    color: #6c757d;
+    font-size: 0.85rem;
+}
+
+.payment-option .badge {
+    font-size: 0.75rem;
+    padding: 5px 10px;
+}
+
+/* ========================================
+   ORDER SUMMARY
+   ======================================== */
+
+.order-summary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.order-summary .section-header {
+    color: white;
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+}
+
+.order-items {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.order-item-icon {
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.order-item-details {
+    flex: 1;
+}
+
+.order-item-name {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 3px;
+}
+
+.order-item-info {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.order-item-price {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+/* ========================================
+   ORDER CALCULATIONS
+   ======================================== */
+
+.order-calculations {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.calc-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 1rem;
+}
+
+.calc-row:last-child {
+    margin-bottom: 0;
+}
+
+.calc-row.total-row {
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+    padding-top: 12px;
+    margin-top: 12px;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+
+.btn-place-order {
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+}
+
+.btn-place-order:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+    background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+}
+
+.btn-place-order:active {
+    transform: translateY(0);
+}
+
+.btn-place-order:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* ========================================
+   ALERTS & BADGES
+   ======================================== */
+
+.alert-sm {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+}
+
+.order-summary .alert-info {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+/* ========================================
+   SECURITY BADGES
+   ======================================== */
+
+.security-badges {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.security-item {
+    text-align: center;
+}
+
+.security-item i {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 5px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.security-item small {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ========================================
+   SCROLLBAR STYLING
+   ======================================== */
+
+.order-items::-webkit-scrollbar {
+    width: 6px;
+}
+
+.order-items::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.order-items::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+}
+
+.order-items::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 991px) {
+    .order-summary {
+        position: static !important;
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    .checkout-section {
+        padding: 20px;
+    }
+
+    .checkout-title {
+        font-size: 1.5rem;
+    }
+
+    .section-header {
+        font-size: 1.1rem;
+    }
+
+    .payment-option {
+        padding: 15px;
+    }
+
+    .payment-option label i {
+        font-size: 1.5rem;
+    }
+
+    .order-item {
+        padding: 12px;
+    }
+
+    .btn-place-order {
+        font-size: 1rem;
+        padding: 12px 25px;
+    }
+}
+
+/* ========================================
+   EMPTY CART STATE
+   ======================================== */
+
+.empty-order {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.empty-order i {
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 15px;
+}
+
+.empty-order p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.empty-order .btn {
+    background: white;
+    color: #667eea;
+    font-weight: 600;
+    padding: 12px 30px;
+    border-radius: 8px;
+}
+
+.empty-order .btn:hover {
+    background: #f8f9fa;
+}

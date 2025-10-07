@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farouk Electronics</title>
+    <title>Farouk Electronics - Premium Electronics Store</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -15,120 +15,121 @@
 
 <body class="d-flex flex-column min-vh-100">
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm px-4 py-3">
-        <a class="navbar-brand text-dark fw-bold" href="#">
-            <i class="bi bi-lightning-charge-fill me-2 text-primary"></i>Farouk Electronics
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    @include('Client.components.navbar')
 
-        <div class="d-flex align-items-center ms-auto">
-            <button class="btn btn-outline-secondary me-2 d-md-none" id="mobileSearchBtn"><i
-                    class="bi bi-search"></i></button>
-            <button class="btn btn-outline-secondary d-md-none" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#sidebar" aria-controls="sidebar"><i class="bi bi-list"></i></button>
-        </div>
-
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav align-items-center">
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="{{ route('client.dashboard') }}">Products</a>
-                </li>
-
-                <!-- Cart dropdown with icon + text -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle position-relative" href="#" id="cartDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-cart-fill me-1"></i> Cart
-                        <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            0
+    <!-- Enhanced Hero Section -->
+    <section class="hero text-center py-5 px-3">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="fw-bold mb-3 display-5">Quality Electronics, Delivered Fast</h2>
+                    <p class="lead mb-4">Reliable gadgets for home, work, and play. Explore the latest in electronics with secure checkout and fast shipping.</p>
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        <span class="badge bg-white text-primary px-3 py-2 fs-6">
+                            <i class="bi bi-truck me-2"></i>Free Shipping
                         </span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="cartDropdown" style="min-width: 300px;">
-                        <li id="cartItemsList">Your cart is empty</li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li class="text-center">
-                            <a href="{{ route('client.cart') }}" class="btn btn-primary btn-sm w-100">Go to Cart</a>
-                        </li>
-                    </ul>
-                </li>
-
-
-                <!-- Auth Links -->
-                @guest
-                <li class="nav-item"><a class="nav-link text-dark" href="{{ route('login') }}">Login</a></li>
-                <li class="nav-item"><a class="nav-link text-dark" href="{{ route('register') }}">Register</a></li>
-                @endguest
-
-                @auth
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-dark" href="#" id="userDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle me-1"></i> {{ Auth::user()->name }}
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                        <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
-                        <li><a class="dropdown-item" href="#">Command History</a></li>
-                        <li>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit" class="dropdown-item text-danger">Logout</button>
-                            </form>
-                        </li>
-                    </ul>
-                </li>
-                @endauth
-            </ul>
+                        <span class="badge bg-white text-primary px-3 py-2 fs-6">
+                            <i class="bi bi-shield-check me-2"></i>Secure Payment
+                        </span>
+                        <span class="badge bg-white text-primary px-3 py-2 fs-6">
+                            <i class="bi bi-arrow-clockwise me-2"></i>Easy Returns
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero text-center py-3 px-3 rounded-0 bg-secondary text-light">
-        <h2 class="fw-bold mb-2">Quality Electronics, Delivered Fast</h2>
-        <p class="lead mb-0">Reliable gadgets for home, work, and play. Explore the latest in electronics with secure checkout and fast shipping.</p>
     </section>
 
     <!-- Main Content -->
-    <div class="container-fluid flex-grow-1">
-        <div class="row">
-            <!-- Sidebar -->
-            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse offcanvas-md">
+    <div class="container-fluid flex-grow-1 py-4">
+        <div class="row g-0">
+            <!-- Enhanced Sidebar -->
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar collapse offcanvas-md offcanvas-start">
                 <div class="offcanvas-header d-md-none">
-                    <h5 class="offcanvas-title">Categories</h5>
+                    <h5 class="offcanvas-title">
+                        <i class="bi bi-funnel me-2"></i>Categories
+                    </h5>
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
                 </div>
-                <div class="position-sticky pt-3">
+                <div class="position-sticky pt-3 px-3">
+                    <h6 class="text-uppercase text-muted mb-3 fw-bold d-none d-md-block">
+                        <i class="bi bi-funnel me-2"></i>Filter by Category
+                    </h6>
                     <ul class="nav flex-column" id="categoryList">
                         <li class="nav-item mb-2">
-                            <button class="btn btn-outline-dark w-100 active" data-category="all">All</button>
+                            <button class="btn btn-outline-dark w-100 active" data-category="all">
+                                <i class="bi bi-grid me-2"></i>All Products
+                            </button>
                         </li>
                         @foreach($categories as $category)
                         <li class="nav-item mb-2">
-                            <button class="btn btn-outline-dark w-100" data-category="{{ $category->id }}">{{ $category->name }}</button>
+                            <button class="btn btn-outline-dark w-100" data-category="{{ $category->id }}">
+                                <i class="bi bi-tag me-2"></i>{{ $category->name }}
+                            </button>
                         </li>
                         @endforeach
                     </ul>
                 </div>
             </nav>
 
-            <!-- Products -->
+            <!-- Enhanced Products Section -->
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <!-- Desktop search bar -->
-                <div class="d-none d-md-block my-3">
-                    <input type="text" class="form-control w-75" placeholder="Search products..." id="desktopSearch">
-                </div>
-                <!-- Mobile search bar -->
-                <div class="d-md-none my-3 d-none" id="mobileSearchContainer">
-                    <input type="text" class="form-control" placeholder="Search products..." id="mobileSearch">
+                <!-- Search and Filter Bar -->
+                <div class="row mb-4 align-items-center">
+                    <div class="col-md-8">
+                        <!-- Desktop search bar -->
+                        <div class="d-none d-md-block">
+                            <div class="input-group shadow-sm">
+                                <span class="input-group-text bg-white border-end-0">
+                                    <i class="bi bi-search text-muted"></i>
+                                </span>
+                                <input type="text" class="form-control border-start-0 ps-0" 
+                                       placeholder="Search for products..." 
+                                       id="desktopSearch">
+                            </div>
+                        </div>
+                        <!-- Mobile search bar -->
+                        <div class="d-md-none" id="mobileSearchContainer">
+                            <div class="input-group shadow-sm">
+                                <span class="input-group-text bg-white border-end-0">
+                                    <i class="bi bi-search text-muted"></i>
+                                </span>
+                                <input type="text" class="form-control border-start-0 ps-0" 
+                                       placeholder="Search products..." 
+                                       id="mobileSearch">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-end d-none d-md-block">
+                        <button class="btn btn-outline-secondary" data-bs-toggle="dropdown">
+                            <i class="bi bi-sort-down me-2"></i>Sort By
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-star me-2"></i>Featured</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-arrow-up me-2"></i>Price: Low to High</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-arrow-down me-2"></i>Price: High to Low</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-calendar me-2"></i>Newest</a></li>
+                        </ul>
+                    </div>
                 </div>
 
+                <!-- Products Counter -->
+                <div class="mb-3">
+                    <p class="text-muted mb-0">
+                        <i class="bi bi-box-seam me-2"></i>
+                        <span id="productCount">{{ count($products) }}</span> Products Available
+                    </p>
+                </div>
+
+                <!-- Enhanced Product Grid -->
                 <div class="row g-4" id="productGrid">
                     @foreach($products as $product)
-                    <div class="col-sm-6 col-md-4 col-lg-3 product-card" data-category="{{ $product->category_id }}" data-id="{{ $product->id }}">
-                    <div class="card glass-card h-100 text-center p-3 shadow-hover">
-                      <div class="product-image-wrapper mb-2">
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 product-card" 
+                         data-category="{{ $product->category_id }}" 
+                         data-id="{{ $product->id }}">
+                        <div class="card glass-card h-100 border-0">
+                            <!-- Product Image -->
+                           <div class="product-image-wrapper mb-2">
                             @if($product->photo1)
                                 <img src="{{ asset('storage/' . $product->photo1) }}" 
                                     alt="{{ $product->name }}" 
@@ -136,121 +137,82 @@
                             @else
                                 <i class="bi bi-box display-1 text-primary"></i>
                             @endif
-                      </div>
-                        <h5 class="card-title">{{ $product->name }}</h5>
-                        <p class="text-success fw-bold">{{ $product->price }} DT</p>
-                        <p class="text-muted">Stock: {{ $product->stock }}</p>                
+                      
+                                <!-- Stock Badge -->
+                                @if($product->stock > 0)
+                                    <span class="badge bg-success position-absolute top-0 end-0 m-2">
+                                        <i class="bi bi-check-circle me-1"></i>In Stock
+                                    </span>
+                                @else
+                                    <span class="badge bg-danger position-absolute top-0 end-0 m-2">
+                                        <i class="bi bi-x-circle me-1"></i>Out of Stock
+                                    </span>
+                                @endif
+                            </div>
+                            
+                            <!-- Product Info -->
+                            <div class="card-body d-flex flex-column p-3">
+                                <h5 class="card-title mb-2">{{ $product->name }}</h5>
+                                
+                                <div class="mt-auto">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="text-success fw-bold fs-4">{{ $product->price }} DT</span>
+                                        <span class="text-muted small">
+                                            <i class="bi bi-box me-1"></i>{{ $product->stock }}
+                                        </span>
+                                    </div>
+                                    
+                                    <!-- Action Buttons -->
+                                    <div class="d-grid gap-2">
+                                        @if($product->stock > 0)
+                                            <button class="btn btn-outline-primary btn-sm add-to-cart-btn" 
+                                                    data-product-id="{{ $product->id }}">
+                                                <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                                            </button>
+                                        @else
+                                            <button class="btn btn-outline-secondary btn-sm" disabled>
+                                                <i class="bi bi-x-circle me-2"></i>Out of Stock
+                                            </button>
+                                        @endif
+                                        <a href="{{ route('client.product.show', $product->id) }}" 
+                                           class="btn btn-primary btn-sm">
+                                            <i class="bi bi-eye me-2"></i>View Details
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="mt-auto d-grid gap-2">
-                        <button class="btn btn-outline-primary btn-sm add-to-cart-btn w-100">Add to Cart</button>
-                        <a href="{{ route('client.product.show', $product->id) }}" class="btn btn-primary btn-sm w-100">View Details</a>
-                    </div>
-                    
-                </div>
-
                     @endforeach
                 </div>
+
+                <!-- Empty State (if no products) -->
+                @if(count($products) == 0)
+                <div class="text-center py-5">
+                    <i class="bi bi-inbox display-1 text-muted mb-3"></i>
+                    <h3 class="text-muted">No products found</h3>
+                    <p class="text-muted">Try adjusting your filters or search terms</p>
+                </div>
+                @endif
             </main>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-light text-center py-4 shadow-sm mt-auto">
-        &copy; {{ date('Y') }} Farouk Electronics. All rights reserved.
-    </footer>
+    <!-- Enhanced Footer -->
+    @include('Client.components.footer')
+
+    <!-- Mobile Filter Button (Fixed) -->
+    <button class="btn btn-primary d-md-none position-fixed bottom-0 start-0 m-3 rounded-circle shadow-lg" 
+            style="width: 56px; height: 56px; z-index: 1020;"
+            data-bs-toggle="offcanvas" 
+            data-bs-target="#sidebar">
+        <i class="bi bi-funnel fs-5"></i>
+    </button>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- JS -->
-    <script>
-    // Mobile search toggle
-    const mobileBtn = document.getElementById('mobileSearchBtn');
-    const mobileSearchContainer = document.getElementById('mobileSearchContainer');
-    mobileBtn.addEventListener('click', () => {
-        mobileSearchContainer.classList.toggle('d-none');
-        mobileSearchContainer.querySelector('input').focus();
-    });
-
-    // Category filter
-    const categoryButtons = document.querySelectorAll('#categoryList button');
-    const productCards = document.querySelectorAll('.product-card');
-    categoryButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            categoryButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const categoryId = btn.getAttribute('data-category');
-            productCards.forEach(card => {
-                card.style.display = (categoryId === 'all' || card.dataset.category === categoryId) ? 'block' : 'none';
-            });
-        });
-    });
-
-    // Cart logic
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-   // Update cart in localStorage and navbar
-    function truncate(str, max = 15) {
-        return str.length > max ? str.substring(0, max) + '…' : str;
-    }
-
-    function updateCart() {
-        localStorage.setItem('cart', JSON.stringify(cart));
-        const cartCount = document.getElementById('cartCount');
-        const cartItemsList = document.getElementById('cartItemsList');
-        const cartTotal = document.getElementById('cartTotal');
-
-        cartCount.textContent = cart.length;
-
-        if(cart.length === 0){
-            cartItemsList.innerHTML = '<li>Your cart is empty</li>';
-            cartTotal.textContent = '';
-        } else {
-            cartItemsList.innerHTML = '';
-            let total = 0;
-
-            cart.forEach(p => {
-                const li = document.createElement('li');
-                li.classList.add('d-flex', 'justify-content-between', 'align-items-center', 'mb-1');
-                li.innerHTML = `
-                    <span title="${p.name}">${truncate(p.name)}</span>
-                    <span class="text-success fw-bold">${(p.price * p.qty).toFixed(2)} DT</span>
-                `;
-                cartItemsList.appendChild(li);
-                total += p.price * p.qty;
-            });
-
-            cartTotal.textContent = `Total: ${total.toFixed(2)} DT`;
-        }
-    }
-
-    document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const card = btn.closest('.product-card');
-            const product = {
-                id: card.dataset.id,
-                name: card.querySelector('.card-title').textContent,
-                price: parseFloat(card.querySelector('.text-success').textContent),
-                stock: parseInt(card.querySelector('.text-muted').textContent.replace('Stock: ', '')),
-                qty: 1
-            };
-
-            const existing = cart.find(p => p.id == product.id);
-            if (existing) {
-                if(existing.qty < product.stock) existing.qty++;
-            } else {
-                cart.push(product);
-            }
-
-            updateCart();
-            alert(`${product.name} added to cart!`);
-        });
-    });
-
-    // Initial cart badge update
-    updateCart();
-    </script>
+    <script src="{{ asset('js/client.js') }}"></script>
+    <script src="{{ asset('js/cart.js') }}"></script>
 
 </body>
 </html>
