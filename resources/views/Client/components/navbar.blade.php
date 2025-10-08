@@ -54,7 +54,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                     <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
-                    <li><a class="dropdown-item" href="{{ route('client.orders') }}">Command History</a></li>
+                    <li><a class="dropdown-item" href="{{ route('client.orders.index') }}">Command History</a></li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

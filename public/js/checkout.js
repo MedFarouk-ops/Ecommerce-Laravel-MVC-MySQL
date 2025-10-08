@@ -90,8 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return true;
     }
 
-    // --- Handle Form Submission ---
-    checkoutForm.addEventListener('submit', (e) => {
+   // --- Handle Form Submission ---
+    checkoutForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         if (cart.length === 0) {
@@ -99,11 +99,14 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        if (!validateForm()) {
-            return;
-        }
+        if (!validateForm()) return;
 
-        // Collect form data
+        // --- Calculate totals ---
+        const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+        const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_COST;
+        const total = subtotal + shipping;
+
+        // --- Prepare order payload ---
         const orderData = {
             customer: {
                 firstName: document.getElementById('firstName').value.trim(),
@@ -116,33 +119,67 @@ document.addEventListener('DOMContentLoaded', () => {
                 notes: document.getElementById('orderNotes').value.trim()
             },
             payment: document.querySelector('input[name="payment"]:checked').value,
-            items: cart,
-            subtotal: parseFloat(orderSubtotalEl.textContent),
-            shipping: orderShippingEl.textContent === 'FREE' ? 0 : SHIPPING_COST,
-            total: parseFloat(orderTotalEl.textContent),
-            orderDate: new Date().toISOString()
+            items: cart.map(item => ({
+                id: parseInt(item.id),
+                name: item.name,
+                qty: item.qty,
+                price: item.price
+            })),
+            subtotal,
+            shipping,
+            total
         };
 
-        // Disable button to prevent double submission
+        console.log('Submitting order to /client/orders...');
+        console.log('Order payload:', JSON.stringify(orderData, null, 2));
+
         placeOrderBtn.disabled = true;
         placeOrderBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Processing...';
 
-        // Simulate order processing (replace with actual API call)
-        setTimeout(() => {
-            // Here you would typically send the order to your backend
-            console.log('Order Data:', orderData);
-            
-            // Clear the cart
-            localStorage.removeItem('cart');
-            
-            // Show success message
-            showSuccessModal(orderData);
-            
-            // Re-enable button
+        try {
+            const response = await fetch('/client/orders', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify(orderData),
+                redirect: 'manual' // prevents automatic redirects
+            });
+
+            console.log('Raw response:', response);
+
+            // Read raw response text
+            const resultText = await response.text();
+            console.log('Response text:', resultText);
+
+            let result;
+            try {
+                result = JSON.parse(resultText); // parse JSON
+            } catch (err) {
+                console.error('Failed to parse JSON:', err);
+                showToast('Server did not return valid JSON.', 'danger');
+                return;
+            }
+
+            // Handle response
+            if (response.ok) {
+                localStorage.removeItem('cart');
+                showSuccessModal(orderData);
+            } else {
+                showToast(result.message || 'Failed to place order', 'danger');
+            }
+
+        } catch (error) {
+            console.error('Error submitting order:', error);
+            showToast('Something went wrong, please try again.', 'danger');
+        } finally {
             placeOrderBtn.disabled = false;
             placeOrderBtn.innerHTML = '<i class="bi bi-check-circle me-2"></i>Place Order';
-        }, 1500);
+        }
     });
+
+
 
     // --- Success Modal ---
     function showSuccessModal(orderData) {

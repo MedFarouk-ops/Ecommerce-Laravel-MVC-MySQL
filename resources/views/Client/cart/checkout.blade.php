@@ -15,6 +15,8 @@
 
     <!-- Checkout CSS -->
     <link href="{{ asset('css/checkout.css') }}" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -213,5 +215,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Checkout JS -->
     <script src="{{ asset('js/checkout.js') }}"></script>
+    <script src="{{ asset('js/client.js') }}"></script>
+    <script src="{{ asset('js/cart.js') }}"></script>
 </body>
 </html>

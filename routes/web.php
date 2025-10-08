@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\ClientController;
+use App\Http\Controllers\Client\ClientOrderController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminProductController;
@@ -50,7 +51,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
 // Client routes (all prefixed with 'client' and named 'client.*')
 Route::prefix('client')->name('client.')->middleware(['auth'])->group(function () {
     Route::get('/checkout', [ClientController::class, 'checkout'])->name('checkout');
-    Route::get('/orders', [ClientController::class, 'orders'])->name('orders');
+    Route::get('/orders', [ClientOrderController::class, 'index'])->name('orders.index');
+    Route::post('/orders', [ClientOrderController::class, 'store'])->name('orders.store');
 });
 
 // Routes that are public (no login required)
