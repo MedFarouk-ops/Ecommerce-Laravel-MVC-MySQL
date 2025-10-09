@@ -26,7 +26,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.orders') }}" class="nav-item {{ request()->routeIs('admin.orders') ? 'active' : '' }}">
+                    <a href="{{ route('admin.orders.index') }}" class="nav-item {{ request()->routeIs('admin.orders') ? 'active' : '' }}">
                         <i class="fas fa-receipt"></i> Orders
                     </a>
                 </li>

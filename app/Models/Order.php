@@ -11,8 +11,17 @@ class Order extends Model
 
     protected $fillable = [
         'user_id',
-        'status',       // e.g., pending, processing, shipped, delivered
-        'total_amount', // total price of the order
+        'first_name',
+        'last_name',
+        'phone',
+        'email',
+        'address',
+        'city',
+        'postal_code',
+        'notes',
+        'payment_method',
+        'total_amount',
+        'status', // pending, processing, etc.
     ];
 
     /**
