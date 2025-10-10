@@ -108,4 +108,38 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+
+    const productGrid = document.getElementById('productGrid');
+    const sortLinks = document.querySelectorAll('#sortDropdown a');
+
+    sortLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const sortType = this.dataset.sort;
+
+            // Convert NodeList to array for sorting
+            const products = Array.from(productGrid.querySelectorAll('.product-card'));
+
+            products.sort((a, b) => {
+                const priceA = parseFloat(a.querySelector('.text-success')?.textContent.replace(' DT','').replace(/,/g,'') || '0');
+                const priceB = parseFloat(b.querySelector('.text-success')?.textContent.replace(' DT','').replace(/,/g,'') || '0');
+
+                switch(sortType) {
+                    case 'price-asc':
+                        return priceA - priceB;
+                    case 'price-desc':
+                        return priceB - priceA;
+                    case 'newest':
+                        return parseInt(b.dataset.id) - parseInt(a.dataset.id); // assuming higher ID = newer
+                    case 'featured':
+                    default:
+                        return 0; // keep original order
+                }
+            });
+
+            // Re-append sorted products
+            products.forEach(p => productGrid.appendChild(p));
+        });
+    });
+
 });

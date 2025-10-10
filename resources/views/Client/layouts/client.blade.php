@@ -105,11 +105,11 @@
                         <button class="btn btn-outline-secondary" data-bs-toggle="dropdown">
                             <i class="bi bi-sort-down me-2"></i>Sort By
                         </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-star me-2"></i>Featured</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-arrow-up me-2"></i>Price: Low to High</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-arrow-down me-2"></i>Price: High to Low</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-calendar me-2"></i>Newest</a></li>
+                       <ul class="dropdown-menu dropdown-menu-end" id="sortDropdown">
+                            <li><a class="dropdown-item" href="#" data-sort="featured"><i class="bi bi-star me-2"></i>Featured</a></li>
+                            <li><a class="dropdown-item" href="#" data-sort="price-asc"><i class="bi bi-arrow-up me-2"></i>Price: Low to High</a></li>
+                            <li><a class="dropdown-item" href="#" data-sort="price-desc"><i class="bi bi-arrow-down me-2"></i>Price: High to Low</a></li>
+                            <li><a class="dropdown-item" href="#" data-sort="newest"><i class="bi bi-calendar me-2"></i>Newest</a></li>
                         </ul>
                     </div>
                 </div>
