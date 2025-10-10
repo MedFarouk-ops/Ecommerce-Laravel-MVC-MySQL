@@ -3,18 +3,15 @@
     <a class="navbar-brand text-dark fw-bold" href="{{ route('client.dashboard') }}">
         <i class="bi bi-lightning-charge-fill me-2 text-primary"></i>Electronics
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    
 
     <div class="d-flex align-items-center ms-auto">
         <button class="btn btn-outline-secondary me-2 d-md-none" id="mobileSearchBtn">
             <i class="bi bi-search"></i>
         </button>
-        <button class="btn btn-outline-secondary d-md-none" type="button" data-bs-toggle="offcanvas"
-            data-bs-target="#sidebar" aria-controls="sidebar">
-            <i class="bi bi-list"></i>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
     </div>
 
