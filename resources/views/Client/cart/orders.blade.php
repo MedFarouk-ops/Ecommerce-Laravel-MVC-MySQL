@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farouk Electronics - Premium Electronics Store</title>
+    <title>Electronics - Premium Electronics Store</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -27,6 +27,8 @@
             <button class="btn btn-outline-primary" data-filter="processing">Processing</button>
             <button class="btn btn-outline-primary" data-filter="shipped">Shipped</button>
             <button class="btn btn-outline-primary" data-filter="delivered">Delivered</button>
+            <button class="btn btn-outline-primary" data-filter="cancelled">Cancelled</button>
+            <button class="btn btn-outline-primary" data-filter="completed">Completed</button>
         </div>
     </div>
 
@@ -60,6 +62,14 @@
                             <span class="badge bg-success text-white"><i class="bi bi-check-circle me-1"></i>Delivered</span>
                         @elseif($order->status == 'cancelled')
                             <span class="badge bg-danger text-white"><i class="bi bi-x-circle me-1"></i>Cancelled</span>
+                        @elseif($order->status == 'completed')
+                            <span class="badge bg-success text-white">
+                                <i class="bi bi-check2-all me-1"></i>Completed
+                            </span>
+                        @elseif($order->status == 'cancelled' || $order->status == 'canceled')
+                            <span class="badge bg-danger text-white">
+                                <i class="bi bi-x-circle me-1"></i>Cancelled
+                            </span>
                         @endif
                     </div>
                 </div>
@@ -99,9 +109,6 @@
                 </div>
 
                 <div class="card-footer d-flex justify-content-between align-items-center">
-                    <a href="#" class="btn btn-sm btn-outline-primary">
-                        <i class="bi bi-eye me-1"></i>View Details
-                    </a>
                     @if($order->status == 'delivered')
                     <button class="btn btn-sm btn-outline-success" data-order-id="{{ $order->id }}">
                         <i class="bi bi-arrow-repeat me-1"></i>Reorder

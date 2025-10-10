@@ -1,7 +1,7 @@
 <!-- resources/views/components/navbar.blade.php -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm px-4 py-3">
     <a class="navbar-brand text-dark fw-bold" href="{{ route('client.dashboard') }}">
-        <i class="bi bi-lightning-charge-fill me-2 text-primary"></i>Farouk Electronics
+        <i class="bi bi-lightning-charge-fill me-2 text-primary"></i>Electronics
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
