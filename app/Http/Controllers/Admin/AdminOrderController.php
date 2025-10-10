@@ -13,9 +13,12 @@ class AdminOrderController extends Controller
      */
     public function index()
     {
-        // Show all orders, most recent first
-        $orders = Order::with('user')->latest()->paginate(15);
-        return view('admin.orders.index', compact('orders'));
+        // Get all orders with their related user and items
+        $orders = \App\Models\Order::with(['user', 'items.product'])
+            ->latest()
+            ->paginate(10); // you can use ->get() if you don’t need pagination
+
+        return view('Admin.orders.index', compact('orders'));
     }
 
     /**
@@ -42,7 +45,7 @@ class AdminOrderController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'status' => 'required|in:pending,processing,shipped,delivered,cancelled',
+            'status' => 'required|in:pending,processing,shipped,delivered,cancelled,completed',
         ]);
 
         $order = Order::findOrFail($id);
