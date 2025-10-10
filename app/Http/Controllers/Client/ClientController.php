@@ -18,7 +18,7 @@ class ClientController extends Controller
     public function index()
     {
         $categories = Category::all();               // Get all categories
-        $products   = Product::with('category')->get(); // Get all products with their category
+        $products   = Product::with('category')->latest()->simplePaginate(8); 
 
         return view('Client.layouts.client', compact('categories', 'products'));
     }

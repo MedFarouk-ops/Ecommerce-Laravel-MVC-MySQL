@@ -75,6 +75,9 @@
             </div>
         </div>
     </div>
+    <div class="mt-4 flex justify-center">
+        {{ $categories->links() }}
+    </div>
 </div>
 
 <!-- Alpine.js -->

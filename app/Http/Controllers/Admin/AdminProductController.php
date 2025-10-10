@@ -11,7 +11,11 @@ class AdminProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('category')->get();
+        // Fetch products with their related category, 10 per page
+        $products = Product::with('category')
+            ->latest() // optional: order by latest
+            ->paginate(10);
+
         return view('Admin.products.index', compact('products'));
     }
 

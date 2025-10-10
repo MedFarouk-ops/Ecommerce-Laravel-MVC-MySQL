@@ -196,8 +196,13 @@
                 @endif
             </main>
         </div>
-    </div>
 
+        
+
+    </div>
+    <div class="mt-6 flex justify-center">
+            {{ $products->links() }}
+    </div>
     <!-- Enhanced Footer -->
     @include('Client.components.footer')
 

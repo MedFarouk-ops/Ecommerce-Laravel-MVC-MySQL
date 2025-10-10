@@ -11,6 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{ asset('css/client.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -118,7 +119,9 @@
         </div>
         @endforelse
     </div>
-
+    <div class="mt-4 flex justify-center">
+        {{ $orders->links() }}
+    </div>
 </div>
 
 <!-- Footer -->
