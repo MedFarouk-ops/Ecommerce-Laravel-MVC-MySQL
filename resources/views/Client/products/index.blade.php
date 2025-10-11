@@ -146,12 +146,8 @@
                             <button class="btn btn-add-cart add-to-cart-btn" data-id="{{ $product->id }}" {{ $product->stock <= 0 ? 'disabled' : '' }}>
                                 <i class="bi bi-cart-plus me-2"></i>Add to Cart
                             </button>
-                            <button class="btn btn-buy-now" {{ $product->stock <= 0 ? 'disabled' : '' }}>
-                                <i class="bi bi-lightning-fill me-2"></i>Buy Now
-                            </button>
                         </div>
 
-                        <!-- Additional Info omitted for brevity -->
                     </div>
                 </div>
 

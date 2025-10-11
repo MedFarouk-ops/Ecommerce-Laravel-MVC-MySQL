@@ -33,11 +33,7 @@
                         </form>
                     </div>
                 </div>
-                  <!-- Notifications -->
-                <button class="relative p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-full">
-                    <i class="fas fa-bell text-lg"></i>
-                    <span class="absolute -mt-1 -mr-1 px-2 py-1 text-xs text-white bg-red-500 rounded-full">3</span>
-                </button>
+              
             </div>
         </div>
     </div>

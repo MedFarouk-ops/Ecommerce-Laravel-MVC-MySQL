@@ -162,42 +162,35 @@ body {
     }
 }
 
-/* ===============================
-   Sidebar Enhancement
-   =============================== */
 
-.sidebar {
-    background: white !important;
-    border-right: 1px solid var(--border-color);
-    box-shadow: var(--shadow-sm);
-    min-height: calc(100vh - 200px);
+/* ============ Responsive Sidebar ============ */
+
+#sidebar {
+    background: white;
+    position: fixed;
+    top: 0;
+    left: -260px; /* hidden by default on mobile */
+    width: 260px;
+    height: 100vh;
+    z-index: 1050;
+    overflow-y: auto;
+    transition: transform 0.3s ease, left 0.3s ease;
+    box-shadow: var(--shadow-md);
 }
 
-.sidebar .nav-item {
-    margin-bottom: 0.5rem;
+#sidebar.sidebar-open {
+    left: 0;
 }
 
-.sidebar .btn {
-    text-align: left;
-    font-weight: 500;
-    border: 2px solid transparent;
-    transition: var(--transition);
-    padding: 0.75rem 1rem;
-    border-radius: 10px;
-}
-
-.sidebar .btn:hover {
-    background: var(--bg-light);
-    border-color: var(--primary-color);
-    color: var(--primary-color);
-    transform: translateX(5px);
-}
-
-.sidebar .btn.active {
-    background: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
-    box-shadow: var(--shadow-sm);
+@media (min-width: 768px) {
+    #sidebar {
+        position: static;
+        width: auto;
+        height: auto;
+        left: 0;
+        transform: none;
+        box-shadow: none;
+    }
 }
 
 /* ===============================

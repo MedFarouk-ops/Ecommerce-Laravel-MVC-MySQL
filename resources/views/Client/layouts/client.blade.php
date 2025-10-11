@@ -45,35 +45,7 @@
     <div class="container-fluid flex-grow-1 py-4">
         <div class="row g-0">
         <!-- Enhanced Sidebar -->
-        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar offcanvas-md offcanvas-start">
-            <div class="offcanvas-header d-md-none">
-                <h5 class="offcanvas-title">
-                    <i class="bi bi-funnel me-2"></i>Categories
-                </h5>
-                <!-- Close button -->
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-
-            <div class="position-sticky pt-3 px-3">
-                <h6 class="text-uppercase text-muted mb-3 fw-bold d-none d-md-block">
-                    <i class="bi bi-funnel me-2"></i>Filter by Category
-                </h6>
-                <ul class="nav flex-column" id="categoryList">
-                    <li class="nav-item mb-2">
-                        <button class="btn btn-outline-dark w-100 active" data-category="all">
-                            <i class="bi bi-grid me-2"></i>All Products
-                        </button>
-                    </li>
-                    @foreach($categories as $category)
-                    <li class="nav-item mb-2">
-                        <button class="btn btn-outline-dark w-100" data-category="{{ $category->id }}">
-                            <i class="bi bi-tag me-2"></i>{{ $category->name }}
-                        </button>
-                    </li>
-                    @endforeach
-                </ul>
-            </div>
-        </nav>
+        @include('Client.components.sidebar')
 
             <!-- Enhanced Products Section -->
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -210,10 +182,8 @@
     @include('Client.components.footer')
 
     <!-- Mobile Filter Button (Fixed) -->
-    <button class="btn btn-primary d-md-none position-fixed bottom-0 start-0 m-3 rounded-circle shadow-lg" 
-            style="width: 56px; height: 56px; z-index: 1020;"
-            data-bs-toggle="offcanvas" 
-            data-bs-target="#sidebar">
+    <button id="sidebarToggle" class="btn btn-primary d-md-none position-fixed bottom-0 start-0 m-3 rounded-circle shadow-lg" 
+        style="width: 56px; height: 56px; z-index: 1020;">
         <i class="bi bi-funnel fs-5"></i>
     </button>
 

@@ -15,7 +15,7 @@ class AdminOrderController extends Controller
     {
         // Get all orders with their related user and items
         $orders = \App\Models\Order::with(['user', 'items.product'])
-            ->latest()
+            ->orderBy('updated_at', 'desc') // <-- use orderBy instead of latest()
             ->paginate(10); // you can use ->get() if you don’t need pagination
 
         return view('Admin.orders.index', compact('orders'));
@@ -42,20 +42,53 @@ class AdminOrderController extends Controller
     /**
      * Update the order (e.g. change status).
      */
-    public function update(Request $request, string $id)
+   public function update(Request $request, string $id)
     {
         $request->validate([
             'status' => 'required|in:pending,processing,shipped,delivered,cancelled,completed',
+            'items' => 'required|array',
+            'items.*.quantity' => 'required|integer|min:1',
         ]);
 
-        $order = Order::findOrFail($id);
-        $order->update(['status' => $request->status]);
+        try {
+            $order = Order::find($id);
 
-        return redirect()
-            ->route('admin.orders.index')
-            ->with('success', 'Order status updated successfully.');
+            if (!$order) {
+                return redirect()->route('admin.orders.index')
+                    ->with('error', 'Order not found.');
+            }
+
+            // Update order status
+            $order->status = $request->status;
+
+            $total = 0;
+
+            if ($request->has('items') && is_array($request->items)) {
+                foreach ($request->items as $itemId => $itemData) {
+                    $orderItem = $order->items()->find($itemId);
+
+                    if ($orderItem) {
+                        $orderItem->quantity = $itemData['quantity'] ?? $orderItem->quantity;
+                        $orderItem->price = $orderItem->product->price ?? $orderItem->price; // price fixed
+                        $orderItem->save();
+
+                        $total += $orderItem->quantity * $orderItem->price;
+                    }
+                }
+            }
+
+            // Update total
+            $order->total_amount = $total;
+            $order->save();
+
+            return redirect()->route('admin.orders.index')
+                ->with('success', 'Order updated successfully.');
+        } catch (\Exception $e) {
+            // Log the error if needed: \Log::error($e);
+            return redirect()->route('admin.orders.index')
+                ->with('error', 'Something went wrong while updating the order.');
+        }
     }
-
     /**
      * Remove the specified order from storage.
      */

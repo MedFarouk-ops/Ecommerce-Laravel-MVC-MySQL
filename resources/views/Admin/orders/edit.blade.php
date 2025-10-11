@@ -51,7 +51,8 @@
                         <input type="number" name="items[{{ $item->id }}][quantity]" value="{{ $item->quantity }}" min="1" class="w-20 border rounded px-1 py-1">
                     </td>
                     <td class="px-4 py-2 border-b">
-                        <input type="number" step="0.01" name="items[{{ $item->id }}][price]" value="{{ $item->price }}" class="w-24 border rounded px-1 py-1">
+                        <!-- Price is fixed and not editable -->
+                        <span class="w-24 inline-block px-1 py-1">{{ number_format($item->price, 2) }}</span>
                     </td>
                     <td class="px-4 py-2 border-b">{{ number_format($item->quantity * $item->price, 2) }}</td>
                 </tr>
@@ -59,6 +60,7 @@
             </tbody>
         </table>
     </div>
+
 
     {{-- Total & Status --}}
     <div class="mb-6 bg-white p-4 rounded-md shadow-md flex items-center justify-between">

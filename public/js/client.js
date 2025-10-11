@@ -142,4 +142,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+   const sidebar = document.getElementById("sidebar");
+    const toggleBtn = document.getElementById("sidebarToggle");
+    const closeBtnSidebar = document.getElementById("closeSidebar");
+
+    // Open sidebar on mobile
+    toggleBtn.addEventListener("click", () => {
+        sidebar.classList.add("sidebar-mobile-open");
+        sidebar.classList.remove("d-none");
+    });
+
+    // Close sidebar on mobile
+    closeBtnSidebar.addEventListener("click", () => {
+        sidebar.classList.remove("sidebar-mobile-open");
+        sidebar.classList.add("d-none");
+    });
+
+    // Optional: click outside to close
+    document.addEventListener("click", (e) => {
+        if (window.innerWidth < 768 && sidebar.classList.contains("sidebar-mobile-open")) {
+            if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+                sidebar.classList.remove("sidebar-mobile-open");
+                sidebar.classList.add("d-none");
+            }
+        }
+    });
 });

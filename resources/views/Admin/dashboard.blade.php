@@ -70,7 +70,7 @@
             <table class="min-w-full text-left border-collapse">
                 <thead class="bg-gray-100 text-gray-600 uppercase text-sm">
                     <tr>
-                        <th class="px-6 py-3 border-b">Order #</th>
+                        <th class="px-6 py-3 border-b">Order ID#</th>
                         <th class="px-6 py-3 border-b">Customer</th>
                         <th class="px-6 py-3 border-b">Amount</th>
                         <th class="px-6 py-3 border-b">Status</th>
@@ -78,26 +78,19 @@
                     </tr>
                 </thead>
                 <tbody class="text-gray-700">
-                    @php
-                        $orders = [
-                            ['id' => 1234, 'customer' => 'John Doe', 'amount' => '$120', 'status' => 'Completed', 'date' => '2025-09-25'],
-                            ['id' => 1235, 'customer' => 'Jane Smith', 'amount' => '$250', 'status' => 'Pending', 'date' => '2025-09-24'],
-                            ['id' => 1236, 'customer' => 'Bob Johnson', 'amount' => '$75', 'status' => 'Completed', 'date' => '2025-09-23'],
-                        ];
-                    @endphp
 
                     @foreach($orders as $order)
                     <tr class="hover:bg-gray-200/30 transition">
                         <td class="px-6 py-3 border-b">{{ $order['id'] }}</td>
-                        <td class="px-6 py-3 border-b">{{ $order['customer'] }}</td>
-                        <td class="px-6 py-3 border-b">{{ $order['amount'] }}</td>
+                        <td class="px-6 py-3 border-b">{{ $order['first_name'] }}</td>
+                        <td class="px-6 py-3 border-b">{{ $order['total_amount'] }}</td>
                         <td class="px-6 py-3 border-b">
                             <span class="px-2 py-1 rounded-full text-xs font-semibold 
                                 {{ $order['status'] === 'Completed' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
                                 {{ $order['status'] }}
                             </span>
                         </td>
-                        <td class="px-6 py-3 border-b">{{ $order['date'] }}</td>
+                        <td class="px-6 py-3 border-b">{{ $order['updated_at'] }}</td>
                     </tr>
                     @endforeach
                 </tbody>

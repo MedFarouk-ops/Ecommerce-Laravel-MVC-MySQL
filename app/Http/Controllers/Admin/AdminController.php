@@ -15,7 +15,12 @@ class AdminController extends Controller
     // Show admin dashboard
     public function index()
     {
-        return view('Admin.dashboard');
+        $orders = \App\Models\Order::with(['user', 'items.product'])
+            ->latest()
+            ->take(5) // Show only latest 5 orders
+            ->get();
+
+        return view('Admin.dashboard', compact('orders'));
     }
 
     public function showLogin()
