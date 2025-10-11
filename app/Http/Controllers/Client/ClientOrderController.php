@@ -15,7 +15,7 @@ class ClientOrderController extends Controller
      */
     public function index()
     {
-        $orders = auth()->user()->orders()->with('items.product')->latest()->simplePaginate(3); // Only 5 orders per page
+        $orders = auth()->user()->orders()->with('items.product')->latest()->simplePaginate(3); // Only 3 orders per page
 
         return view('client.cart.orders', compact('orders'));
     }
