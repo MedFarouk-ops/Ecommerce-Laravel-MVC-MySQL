@@ -17,11 +17,12 @@
 <body class="d-flex flex-column min-vh-100">
 
     @include('Client.components.navbar')
-    <div class="container py-4">
+   <div class="container py-4">
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2><i class="bi bi-box-seam me-2"></i>My Orders</h2>
-        <div class="btn-group" role="group">
+    <!-- Orders Header & Filter -->
+    <div class="mb-4">
+        <h2 class="mb-3"><i class="bi bi-box-seam me-2"></i>My Orders</h2>
+        <div class="d-flex flex-wrap gap-2">
             <button class="btn btn-outline-primary active" data-filter="all">All</button>
             <button class="btn btn-outline-primary" data-filter="pending">Pending</button>
             <button class="btn btn-outline-primary" data-filter="processing">Processing</button>
@@ -32,73 +33,60 @@
         </div>
     </div>
 
-    <!-- Orders Container -->
+    <!-- Orders List -->
     <div class="row g-4" id="ordersContainer">
 
         @forelse($orders as $order)
-        <div class="col-12 order-item" data-status="{{ $order->status }}">
-            <div class="card order-card shadow-sm border-0">
-                <div class="card-header bg-white d-flex justify-content-between align-items-center">
-                    <div>
-                        <small class="text-muted d-block">Order ID</small>
-                        <strong class="order-id">#{{ $order->id }}</strong>
-                    </div>
-                    <div>
-                        <small class="text-muted d-block">Date</small>
-                        <strong>{{ $order->created_at->format('M d, Y') }}</strong>
-                    </div>
-                    <div>
-                        <small class="text-muted d-block">Total</small>
-                        <strong class="text-success">{{ $order->total_amount }} DT</strong>
-                    </div>
-                    <div>
-                        @if($order->status == 'pending')
-                            <span class="badge bg-warning text-dark"><i class="bi bi-clock-history me-1"></i>Pending</span>
-                        @elseif($order->status == 'processing')
-                            <span class="badge bg-info text-white"><i class="bi bi-arrow-repeat me-1"></i>Processing</span>
-                        @elseif($order->status == 'shipped')
-                            <span class="badge bg-primary text-white"><i class="bi bi-truck me-1"></i>Shipped</span>
-                        @elseif($order->status == 'delivered')
-                            <span class="badge bg-success text-white"><i class="bi bi-check-circle me-1"></i>Delivered</span>
-                        @elseif($order->status == 'cancelled')
-                            <span class="badge bg-danger text-white"><i class="bi bi-x-circle me-1"></i>Cancelled</span>
-                        @elseif($order->status == 'completed')
-                            <span class="badge bg-success text-white">
-                                <i class="bi bi-check2-all me-1"></i>Completed
+
+        <!-- Desktop / Tablet -->
+        <div class="col-12 d-none d-md-block order-item" data-status="{{ $order->status }}">
+            <div class="card shadow-sm border-0 order-card">
+
+                <!-- Card Header -->
+                <div class="card-header bg-white">
+                    <div class="row row-cols-1 row-cols-md-4 g-2 align-items-center text-center text-md-start">
+                        <div class="col">
+                            <small class="text-muted d-block">Order ID</small>
+                            <strong>#{{ $order->id }}</strong>
+                        </div>
+                        <div class="col">
+                            <small class="text-muted d-block">Date</small>
+                            <strong>{{ $order->created_at->format('M d, Y') }}</strong>
+                        </div>
+                        <div class="col">
+                            <small class="text-muted d-block">Total</small>
+                            <strong class="text-success">{{ $order->total_amount }} DT</strong>
+                        </div>
+                        <div class="col">
+                            <span class="badge {{ $statusClass[$order->status] ?? 'bg-secondary text-white' }}">
+                                {{ ucfirst($order->status) }}
                             </span>
-                        @elseif($order->status == 'cancelled' || $order->status == 'canceled')
-                            <span class="badge bg-danger text-white">
-                                <i class="bi bi-x-circle me-1"></i>Cancelled
-                            </span>
-                        @endif
+                        </div>
                     </div>
                 </div>
 
+                <!-- Card Body -->
                 <div class="card-body">
-                    <!-- Order Items -->
-                    <div class="mb-3">
-                        @foreach($order->items as $item)
-                        <div class="d-flex align-items-center mb-2">
-                            <div class="me-3" style="width:50px; height:50px;">
-                                @if($item->product->photo1)
-                                    <img src="{{ asset('storage/'.$item->product->photo1) }}" class="img-fluid rounded" alt="{{ $item->product->name }}">
-                                @else
-                                    <i class="bi bi-box" style="font-size:2rem;"></i>
-                                @endif
-                            </div>
-                            <div class="flex-grow-1">
-                                <strong>{{ $item->product->name }}</strong>
-                                <small class="d-block">Qty: {{ $item->quantity }} × {{ $item->price }} DT</small>
-                            </div>
-                            <div class="text-end">
-                                <strong>{{ $item->quantity * $item->price }} DT</strong>
-                            </div>
+                    @foreach($order->items as $item)
+                    <div class="d-flex flex-wrap align-items-center mb-3 border-bottom pb-2">
+                        <div class="me-3" style="width:50px; height:50px;">
+                            @if($item->product->photo1)
+                                <img src="{{ asset('storage/'.$item->product->photo1) }}" class="img-fluid rounded" alt="{{ $item->product->name }}">
+                            @else
+                                <i class="bi bi-box" style="font-size:2rem;"></i>
+                            @endif
                         </div>
-                        @endforeach
+                        <div class="flex-grow-1 me-3">
+                            <strong>{{ $item->product->name }}</strong>
+                            <small class="d-block">Qty: {{ $item->quantity }} × {{ $item->price }} DT</small>
+                        </div>
+                        <div class="text-end" style="min-width:100px;">
+                            <strong>{{ $item->quantity * $item->price }} DT</strong>
+                        </div>
                     </div>
+                    @endforeach
 
-                    <!-- Order Summary -->
-                    <div class="d-flex justify-content-between mt-3 border-top pt-2">
+                    <div class="d-flex flex-wrap justify-content-between mt-3 border-top pt-2 text-center text-md-start">
                         <div>
                             <small>Shipping: {{ $order->shipping_cost ?? 0 }} DT</small>
                         </div>
@@ -108,7 +96,8 @@
                     </div>
                 </div>
 
-                <div class="card-footer d-flex justify-content-between align-items-center">
+                <!-- Card Footer -->
+                <div class="card-footer d-flex justify-content-center justify-content-md-end flex-wrap gap-2">
                     @if($order->status == 'delivered')
                     <button class="btn btn-sm btn-outline-success" data-order-id="{{ $order->id }}">
                         <i class="bi bi-arrow-repeat me-1"></i>Reorder
@@ -117,6 +106,56 @@
                 </div>
             </div>
         </div>
+
+        <!-- Mobile -->
+        <div class="col-12 d-md-none order-item" data-status="{{ $order->status }}">
+            <div class="card shadow-sm mb-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div>
+                            <strong>#{{ $order->id }}</strong><br>
+                            <small class="text-muted">{{ $order->created_at->format('M d, Y') }}</small>
+                        </div>
+                        <span class="badge {{ $statusClass[$order->status] ?? 'bg-secondary text-white' }}">
+                            {{ ucfirst($order->status) }}
+                        </span>
+                    </div>
+
+                    @foreach($order->items as $item)
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="me-2" style="width:50px; height:50px;">
+                            @if($item->product->photo1)
+                                <img src="{{ asset('storage/'.$item->product->photo1) }}" class="img-fluid rounded" alt="{{ $item->product->name }}">
+                            @else
+                                <i class="bi bi-box" style="font-size:2rem;"></i>
+                            @endif
+                        </div>
+                        <div class="flex-grow-1">
+                            <strong>{{ $item->product->name }}</strong>
+                            <small class="d-block">Qty: {{ $item->quantity }} × {{ $item->price }} DT</small>
+                        </div>
+                        <div class="text-end" style="min-width:60px;">
+                            <strong>{{ $item->quantity * $item->price }} DT</strong>
+                        </div>
+                    </div>
+                    @endforeach
+
+                    <div class="d-flex justify-content-between mt-2 border-top pt-2">
+                        <small>Shipping: {{ $order->shipping_cost ?? 0 }} DT</small>
+                        <strong>Total: {{ $order->total_amount }} DT</strong>
+                    </div>
+
+                    @if($order->status == 'delivered')
+                    <div class="mt-2 text-end">
+                        <button class="btn btn-sm btn-outline-success">
+                            <i class="bi bi-arrow-repeat me-1"></i>Reorder
+                        </button>
+                    </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+
         @empty
         <div class="text-center py-5" id="emptyState">
             <i class="bi bi-inbox display-1 text-muted mb-3"></i>
@@ -125,11 +164,15 @@
             <a href="{{ route('client.home') }}" class="btn btn-primary"><i class="bi bi-shop me-1"></i>Start Shopping</a>
         </div>
         @endforelse
+
     </div>
-    <div class="mt-4 flex justify-center">
+
+    <div class="mt-4 d-flex justify-content-center">
         {{ $orders->links() }}
     </div>
+
 </div>
+
 
 <!-- Footer -->
     @include('Client.components.footer')

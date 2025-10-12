@@ -78,44 +78,53 @@
 
             <!-- Enhanced Products Section -->
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <!-- Search and Filter Bar -->
-                <div class="row mb-4 align-items-center">
-                    <div class="col-md-8">
-                        <!-- Desktop search bar -->
-                        <div class="d-none d-md-block">
+            <!-- Search and Filter Bar -->
+               <div class="row mb-4 align-items-center">
+                <div class="col-md-8">
+                    <!-- Desktop search bar -->
+                    <div class="d-none d-md-block">
+                        <form action="{{ route('client.search') }}" method="GET">
                             <div class="input-group shadow-sm">
                                 <span class="input-group-text bg-white border-end-0">
                                     <i class="bi bi-search text-muted"></i>
                                 </span>
-                                <input type="text" class="form-control border-start-0 ps-0" 
-                                       placeholder="Search for products..." 
-                                       id="desktopSearch">
+                                <input type="text" name="query" class="form-control border-start-0 ps-0" 
+                                    placeholder="Search for products..." 
+                                    value="{{ request('query') }}" 
+                                    id="desktopSearch">
+                                <button type="submit" class="btn btn-secondary">Search</button>
                             </div>
-                        </div>
-                        <!-- Mobile search bar -->
-                        <div class="d-md-none" id="mobileSearchContainer">
-                            <div class="input-group shadow-sm">
-                                <span class="input-group-text bg-white border-end-0">
-                                    <i class="bi bi-search text-muted"></i>
-                                </span>
-                                <input type="text" class="form-control border-start-0 ps-0" 
-                                       placeholder="Search products..." 
-                                       id="mobileSearch">
-                            </div>
-                        </div>
+                        </form>
                     </div>
-                    <div class="col-md-4 text-end d-none d-md-block">
-                        <button class="btn btn-outline-secondary" data-bs-toggle="dropdown">
-                            <i class="bi bi-sort-down me-2"></i>Sort By
-                        </button>
-                       <ul class="dropdown-menu dropdown-menu-end" id="sortDropdown">
-                            <li><a class="dropdown-item" href="#" data-sort="featured"><i class="bi bi-star me-2"></i>Featured</a></li>
-                            <li><a class="dropdown-item" href="#" data-sort="price-asc"><i class="bi bi-arrow-up me-2"></i>Price: Low to High</a></li>
-                            <li><a class="dropdown-item" href="#" data-sort="price-desc"><i class="bi bi-arrow-down me-2"></i>Price: High to Low</a></li>
-                            <li><a class="dropdown-item" href="#" data-sort="newest"><i class="bi bi-calendar me-2"></i>Newest</a></li>
-                        </ul>
+                    <!-- Mobile search bar -->
+                    <div class="d-md-none" id="mobileSearchContainer">
+                        <form action="{{ route('client.search') }}" method="GET">
+                            <div class="input-group shadow-sm">
+                                <span class="input-group-text bg-white border-end-0">
+                                    <i class="bi bi-search text-muted"></i>
+                                </span>
+                                <input type="text" name="query" class="form-control border-start-0 ps-0" 
+                                    placeholder="Search products..." 
+                                    value="{{ request('query') }}" 
+                                    id="mobileSearch">
+                                 <button type="submit" class="btn btn-secondary">Search</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
+                <div class="col-md-4 text-end d-none d-md-block">
+                    <button class="btn btn-outline-secondary" data-bs-toggle="dropdown">
+                        <i class="bi bi-sort-down me-2"></i>Sort By
+                    </button>
+                <ul class="dropdown-menu dropdown-menu-end" id="sortDropdown">
+                        <li><a class="dropdown-item" href="#" data-sort="featured"><i class="bi bi-star me-2"></i>Featured</a></li>
+                        <li><a class="dropdown-item" href="#" data-sort="price-asc"><i class="bi bi-arrow-up me-2"></i>Price: Low to High</a></li>
+                        <li><a class="dropdown-item" href="#" data-sort="price-desc"><i class="bi bi-arrow-down me-2"></i>Price: High to Low</a></li>
+                        <li><a class="dropdown-item" href="#" data-sort="newest"><i class="bi bi-calendar me-2"></i>Newest</a></li>
+                    </ul>
+                </div>
+            </div>
+
 
                 <!-- Products Counter -->
                 <div class="mb-3">

@@ -24,6 +24,27 @@ class ClientController extends Controller
         return view('Client.layouts.client', compact('categories', 'products', 'promotions'));
     }
 
+    // Search products by name
+    public function search_product(Request $request)
+    {
+        $query = $request->input('query'); // Get the search term
+
+        // Search products where name contains the query (case-insensitive)
+        $products = Product::where('name', 'LIKE', "%{$query}%")
+                            ->with('category')
+                            ->latest()
+                            ->paginate(10);
+
+        // Preserve the search term in pagination links
+        $products->appends(['query' => $query]);
+
+        return view('Client.layouts.client', [
+            'categories' => Category::all(),
+            'products'   => $products,
+            'promotions' => Promotion::where('is_active', true)->latest()->get(),
+            'searchQuery'=> $query,
+        ]);
+    }
 
     public function cart()
     {

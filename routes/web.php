@@ -80,6 +80,7 @@ Route::prefix('client')->name('client.')->group(function () {
     Route::get('/product/{product}', [ClientController::class, 'show_product'])->name('product.show');
      // Cart page
     Route::get('/cart', [ClientController::class, 'cart'])->name('cart');
+    Route::get('/search', [ClientController::class, 'search_product'])->name('search');
 });
 
 // Laravel auth routes

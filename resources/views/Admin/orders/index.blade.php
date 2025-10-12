@@ -50,7 +50,7 @@
                     {{-- Get the client name via relationship --}}
                     <td class="px-6 py-3 border-b">
                         @if($order->user)
-                            {{ $order->user->name }}
+                            {{ $order->first_name }} {{ $order->last_name }}
                             <div class="text-sm text-gray-500">{{ $order->user->phone ?? $order->phone }}</div>
                         @else
                             Guest

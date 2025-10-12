@@ -566,3 +566,35 @@ footer a:hover {
     width: auto;
     height: auto;
 }
+
+/* Make order cards responsive */
+.order-card .card-header .row {
+    flex-wrap: wrap;
+}
+
+.order-card .card-header .col {
+    margin-bottom: 0.5rem;
+}
+
+.order-card .card-body .d-flex.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.order-card .card-body .d-flex.flex-wrap > div {
+    min-width: 100px; /* ensures price boxes don’t shrink too much */
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 576px) {
+    /* Stack header items on extra small screens */
+    .order-card .card-header .row {
+        text-align: center;
+    }
+    .order-card .card-body .d-flex.flex-wrap {
+        justify-content: center;
+    }
+    .order-card .card-footer {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
