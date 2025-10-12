@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Promotion;
 
 class ClientController extends Controller
 {
@@ -19,8 +20,8 @@ class ClientController extends Controller
     {
         $categories = Category::all();               // Get all categories
         $products   = Product::with('category')->latest()->simplePaginate(8); 
-
-        return view('Client.layouts.client', compact('categories', 'products'));
+        $promotions = Promotion::where('is_active', true)->latest()->get(); // Get active promotions
+        return view('Client.layouts.client', compact('categories', 'products', 'promotions'));
     }
 
 

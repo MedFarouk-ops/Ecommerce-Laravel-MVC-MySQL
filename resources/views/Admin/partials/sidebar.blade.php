@@ -26,10 +26,16 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('admin.promotions.index') }}" class="nav-item {{ request()->routeIs('admin.promotions') ? 'active' : '' }}">
+                        <i class="fas fa-bullhorn"></i> Promotions
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('admin.orders.index') }}" class="nav-item {{ request()->routeIs('admin.orders') ? 'active' : '' }}">
                         <i class="fas fa-receipt"></i> Orders
                     </a>
                 </li>
+                
             </ul>
         </nav>
 

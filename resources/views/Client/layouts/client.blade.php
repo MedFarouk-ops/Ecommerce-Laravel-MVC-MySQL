@@ -40,7 +40,36 @@
             </div>
         </div>
     </section>
+     <!-- Promotions Banner Slider -->
+    @if(isset($promotions) && $promotions->count() > 0)
+    <section class="promotions-banner py-3">
+        <div class="container-fluid px-0">
+            <div id="promotionsSlider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+                <div class="carousel-inner">
+                    @foreach($promotions as $index => $promotion)
+                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                        <a href="{{ $promotion->link ?? '#' }}" target="_blank" class="d-block text-center">
+                            <img src="{{ asset('storage/' . $promotion->image) }}" 
+                                class="promotion-image" 
+                                alt="{{ $promotion->title ?? 'Promotion' }}">
+                        </a>
+                    </div>
+                    @endforeach
+                </div>
 
+                <!-- Optional controls -->
+                @if($promotions->count() > 1)
+                <button class="carousel-control-prev" type="button" data-bs-target="#promotionsSlider" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#promotionsSlider" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+                @endif
+            </div>
+        </div>
+    </section>
+    @endif
     <!-- Main Content -->
     <div class="container-fluid flex-grow-1 py-4">
         <div class="row g-0">

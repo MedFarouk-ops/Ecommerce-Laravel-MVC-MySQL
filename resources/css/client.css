@@ -542,3 +542,27 @@ footer a:hover {
     background: var(--primary-dark);
 }
 
+.promotions-banner .carousel-inner {
+    height: 300px; /* Fixed height for the carousel */
+}
+
+.promotions-banner .carousel-item {
+    height: 300px; /* Match carousel height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.promotions-banner .carousel-item a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.promotions-banner .promotion-image {
+    max-height: 300px; /* Same as carousel height */
+    max-width: 100%;
+    width: auto;
+    height: auto;
+}
