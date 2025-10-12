@@ -28,7 +28,7 @@
                     </div>
                     <div class="ml-4">
                         <p class="text-sm font-medium text-gray-600">Total Revenue</p>
-                        <p class="text-2xl font-bold text-gray-900">${{ number_format($totalRevenue ?? 0, 2) }}</p>
+                        <p class="text-2xl font-bold text-gray-900">{{ number_format($totalRevenue ?? 0, 2) }} TND</p>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
             <!-- Today -->
             <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
                 <p class="text-sm font-medium text-gray-600 mb-1">Today</p>
-                <p class="text-xl font-bold text-black-700">${{ number_format($revenueToday ?? 0, 2) }}</p>
+                <p class="text-xl font-bold text-black-700">{{ number_format($revenueToday ?? 0, 2) }} TND</p>
                  @if(isset($growthTodayVsYesterday))
                     <span class="text-sm font-medium
                         {{ $growthTodayVsYesterday >= 0 ? 'text-green-600' : 'text-red-600' }}">
@@ -77,25 +77,25 @@
             <!-- Yesterday -->
             <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
                 <p class="text-sm font-medium text-gray-600 mb-1">Yesterday</p>
-                <p class="text-xl font-bold text-black-700">${{ number_format($revenueYesterday ?? 0, 2) }}</p>
+                <p class="text-xl font-bold text-black-700">{{ number_format($revenueYesterday ?? 0, 2) }} TND</p>
             </div>
 
             <!-- Last 7 Days -->
             <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
                 <p class="text-sm font-medium text-gray-600 mb-1">Last 7 Days</p>
-                <p class="text-xl font-bold text-black-700">${{ number_format($revenueLast7Days ?? 0, 2) }}</p>
+                <p class="text-xl font-bold text-black-700">{{ number_format($revenueLast7Days ?? 0, 2) }} TND</p>
             </div>
 
             <!-- Last 28 Days -->
             <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
                 <p class="text-sm font-medium text-gray-600 mb-1">Last 28 Days</p>
-                <p class="text-xl font-bold text-black-700">${{ number_format($revenueLast28Days ?? 0, 2) }}</p>
+                <p class="text-xl font-bold text-black-700">{{ number_format($revenueLast28Days ?? 0, 2) }} TND</p>
             </div>
 
             <!-- This Month -->
             <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
                 <p class="text-sm font-medium text-gray-600 mb-1">This Month</p>
-                <p class="text-xl font-bold text-black-700">${{ number_format($revenueThisMonth ?? 0, 2) }}</p>
+                <p class="text-xl font-bold text-black-700">{{ number_format($revenueThisMonth ?? 0, 2) }} TND</p>
                  @if(isset($growthThisMonthVsLastMonth))
                     <span class="text-sm font-medium
                         {{ $growthThisMonthVsLastMonth >= 0 ? 'text-green-600' : 'text-red-600' }}">
@@ -107,7 +107,7 @@
             <!-- Last Month -->
             <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
                 <p class="text-sm font-medium text-gray-600 mb-1">Last Month</p>
-                <p class="text-xl font-bold text-black-700">${{ number_format($revenueLastMonth ?? 0, 2) }}</p>
+                <p class="text-xl font-bold text-black-700">{{ number_format($revenueLastMonth ?? 0, 2) }} TND</p>
             </div>
         </div>
 

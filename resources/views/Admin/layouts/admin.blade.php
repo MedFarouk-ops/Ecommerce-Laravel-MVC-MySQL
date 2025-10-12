@@ -14,30 +14,71 @@
 
     <style>
         .sidebar { transition: transform 0.3s ease-in-out; }
-        .btn-modern { transition: all 0.2s ease-in-out; display: inline-flex; align-items: center; justify-content: center; }
-        .btn-modern:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-        .nav-item { transition: all 0.2s ease-in-out; display: flex; align-items: center; padding: 12px 16px; color: #6b7280; text-decoration: none; border-radius: 8px; margin-bottom: 4px; }
-        .nav-item:hover { background-color: #f3f4f6; color: #374151; transform: translateX(4px); }
-        .nav-item.active { background-color: #3b82f6; color: white; }
-        .nav-item i { width: 20px; margin-right: 12px; }
+        .btn-modern { 
+            transition: all 0.2s ease-in-out; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .btn-modern:hover { 
+            transform: translateY(-1px); 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
+        }
+        .nav-item { 
+            transition: all 0.2s ease-in-out; 
+            display: flex; 
+            align-items: center; 
+            padding: 12px 16px; 
+            color: #6b7280; 
+            text-decoration: none; 
+            border-radius: 8px; 
+            margin-bottom: 4px; 
+        }
+        .nav-item:hover { 
+            background-color: #f3f4f6; 
+            color: #374151; 
+            transform: translateX(4px); 
+        }
+        .nav-item.active { 
+            background-color: #3b82f6; 
+            color: white; 
+        }
+        .nav-item i { 
+            width: 20px; 
+            margin-right: 12px; 
+        }
+        
+        /* Ensure proper spacing on mobile */
+        @media (max-width: 767px) {
+            .main-content {
+                padding-top: 64px; /* Height of fixed navbar */
+            }
+        }
+        
+        /* Desktop layout */
+        @media (min-width: 768px) {
+            .main-content {
+                margin-left: 256px; /* Width of sidebar */
+            }
+        }
     </style>
 </head>
-<body class="flex min-h-screen font-sans bg-gray-50">
+<body class="bg-gray-50">
 
     <!-- Sidebar -->
     @include('Admin.partials.sidebar')
 
-    <!-- Main Content -->
-    <div class="flex-1 flex flex-col md:ml-64">
+    <!-- Main Content Wrapper -->
+    <div class="main-content min-h-screen flex flex-col">
         @include('Admin.partials.navbar')
 
-        <main class="flex-1 p-6">
+        <main class="flex-1 p-4 sm:p-6 lg:p-8">
             @yield('content')
         </main>
     </div>
 
     <!-- Overlay for mobile -->
-    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-20 md:hidden hidden"></div>
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden hidden"></div>
 
     @stack('scripts')
 
