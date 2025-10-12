@@ -5,9 +5,13 @@
 
             <!-- About / Logo -->
             <div class="col-md-4 mb-4">
-                <h5 class="fw-bold">Electronics</h5>
-                <p class="small text-muted">
-                    High-quality electronics and gadgets at your fingertips. Shop with ease and confidence.
+                <div class="d-flex align-items-center mb-2">
+                    <h5 class="fw-bold mb-0">
+                        {{ $websiteInfo->name ?? 'Electronics' }}
+                    </h5>
+                </div>
+                <p class="small text-muted mb-0">
+                    {{ $websiteInfo->about_description ?? 'High-quality electronics and gadgets at your fingertips. Shop with ease and confidence.' }}
                 </p>
             </div>
 
@@ -26,15 +30,32 @@
             <!-- Contact / Social -->
             <div class="col-md-4 mb-4">
                 <h6 class="fw-bold">Contact Us</h6>
-                <p class="small mb-1"><i class="bi bi-telephone me-2"></i>+1 234 567 890</p>
-                <p class="small mb-1"><i class="bi bi-envelope me-2"></i>support@electronics.com</p>
-                <p class="small mb-3"><i class="bi bi-geo-alt me-2"></i>123 Main Street, City, Country</p>
-                
+                <p class="small mb-1">
+                    <i class="bi bi-telephone me-2"></i>
+                    {{ $websiteInfo->phone ?? '+1 234 567 890' }}
+                </p>
+                <p class="small mb-1">
+                    <i class="bi bi-envelope me-2"></i>
+                    {{ $websiteInfo->email ?? 'support@electronics.com' }}
+                </p>
+                <p class="small mb-3">
+                    <i class="bi bi-geo-alt me-2"></i>
+                    {{ $websiteInfo->address ?? '123 Main Street, City, Country' }}
+                </p>
+
                 <div>
-                    <a href="#" class="text-dark me-3"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="text-dark me-3"><i class="bi bi-twitter"></i></a>
-                    <a href="#" class="text-dark me-3"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="text-dark"><i class="bi bi-linkedin"></i></a>
+                    @if(isset($websiteInfo) && !empty($websiteInfo->facebook))
+                        <a href="{{ $websiteInfo->facebook }}" class="text-dark me-3"><i class="bi bi-facebook"></i></a>
+                    @endif
+                    @if(isset($websiteInfo) && !empty($websiteInfo->twitter))
+                        <a href="{{ $websiteInfo->twitter }}" class="text-dark me-3"><i class="bi bi-twitter"></i></a>
+                    @endif
+                    @if(isset($websiteInfo) && !empty($websiteInfo->instagram))
+                        <a href="{{ $websiteInfo->instagram }}" class="text-dark me-3"><i class="bi bi-instagram"></i></a>
+                    @endif
+                    @if(isset($websiteInfo) && !empty($websiteInfo->linkedin))
+                        <a href="{{ $websiteInfo->linkedin }}" class="text-dark"><i class="bi bi-linkedin"></i></a>
+                    @endif
                 </div>
             </div>
 
@@ -44,7 +65,7 @@
 
         <!-- Copyright -->
         <div class="text-center small text-muted">
-            &copy; {{ date('Y') }} Electronics. All rights reserved.
+            &copy; {{ date('Y') }} {{ $websiteInfo->name ?? 'Electronics' }}. All rights reserved.
         </div>
     </div>
 </footer>

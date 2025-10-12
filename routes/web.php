@@ -63,21 +63,21 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
     Route::put('promotions/{promotion}', [AdminPromotionController::class, 'update'])->name('promotions.update');
     Route::delete('promotions/{promotion}', [AdminPromotionController::class, 'destroy'])->name('promotions.destroy');
 
-    // Website Infor CRUDs
+    // Website Information CRUDs
     Route::get('website-info/edit', [AdminWebsiteInfoController::class, 'edit'])->name('website-info.edit');
     Route::post('website-info/update', [AdminWebsiteInfoController::class, 'update'])->name('website-info.update');
 
 });
 
 
-// Client routes (all prefixed with 'client' and named 'client.*')
+// Client routes (private routes / need login)
 Route::prefix('client')->name('client.')->middleware(['auth'])->group(function () {
     Route::get('/checkout', [ClientController::class, 'checkout'])->name('checkout');
     Route::get('/orders', [ClientOrderController::class, 'index'])->name('orders.index');
     Route::post('/orders', [ClientOrderController::class, 'store'])->name('orders.store');
 });
 
-// Routes that are public (no login required)
+// Routes that are public (no login required) (accessible by users with role 'client')
 Route::prefix('client')->name('client.')->group(function () {
     // Dashboard / Products list
     Route::get('/dashboard', [ClientController::class, 'index'])->name('dashboard');

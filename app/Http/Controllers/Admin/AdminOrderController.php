@@ -42,7 +42,7 @@ class AdminOrderController extends Controller
     /**
      * Update the order (e.g. change status).
      */
-   public function update(Request $request, string $id)
+    public function update(Request $request, string $id)
     {
         $request->validate([
             'status' => 'required|in:pending,processing,shipped,delivered,cancelled,completed',
@@ -51,15 +51,15 @@ class AdminOrderController extends Controller
         ]);
 
         try {
-            $order = Order::find($id);
+            $order = Order::with('items.product')->find($id);
 
             if (!$order) {
                 return redirect()->route('admin.orders.index')
                     ->with('error', 'Order not found.');
             }
 
-            // Update order status
-            $order->status = $request->status;
+            $oldStatus = $order->status; // Save old status
+            $newStatus = $request->status;
 
             $total = 0;
 
@@ -69,7 +69,7 @@ class AdminOrderController extends Controller
 
                     if ($orderItem) {
                         $orderItem->quantity = $itemData['quantity'] ?? $orderItem->quantity;
-                        $orderItem->price = $orderItem->product->price ?? $orderItem->price; // price fixed
+                        $orderItem->price = $orderItem->product->price ?? $orderItem->price;
                         $orderItem->save();
 
                         $total += $orderItem->quantity * $orderItem->price;
@@ -77,18 +77,67 @@ class AdminOrderController extends Controller
                 }
             }
 
-            // Update total
+            // Handle stock changes
+            $this->handleStockChange($order, $oldStatus, $newStatus);
+
+            // Update order total and status
             $order->total_amount = $total;
+            $order->status = $newStatus;
             $order->save();
 
             return redirect()->route('admin.orders.index')
                 ->with('success', 'Order updated successfully.');
         } catch (\Exception $e) {
-            // Log the error if needed: \Log::error($e);
+            // Optional: log error
+            \Log::error($e);
+
             return redirect()->route('admin.orders.index')
                 ->with('error', 'Something went wrong while updating the order.');
         }
     }
+
+    /**
+     * Handle stock when order status changes.
+     */
+    private function handleStockChange(Order $order, string $oldStatus, string $newStatus)
+    {
+        if ($oldStatus !== 'completed' && $newStatus === 'completed') {
+            // Reduce stock for completed orders
+            $this->reduceProductStock($order);
+        } elseif ($oldStatus === 'completed' && $newStatus !== 'completed') {
+            // Restore stock if order changed from completed to something else
+            $this->restoreProductStock($order);
+        }
+    }
+
+    /**
+     * Reduce stock for all products in the order.
+     */
+    private function reduceProductStock(Order $order)
+    {
+        foreach ($order->items as $item) {
+            $product = $item->product;
+            if ($product) {
+                $product->stock = max(0, $product->stock - $item->quantity);
+                $product->save();
+            }
+        }
+    }
+
+    /**
+     * Restore stock for all products in the order.
+     */
+    private function restoreProductStock(Order $order)
+    {
+        foreach ($order->items as $item) {
+            $product = $item->product;
+            if ($product) {
+                $product->stock += $item->quantity;
+                $product->save();
+            }
+        }
+    }
+
     /**
      * Remove the specified order from storage.
      */
