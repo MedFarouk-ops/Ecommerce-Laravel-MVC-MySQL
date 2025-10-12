@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
+use App\Models\WebsiteInfo;
 use Illuminate\Support\Facades\DB;
 
 class ClientOrderController extends Controller
@@ -16,8 +17,8 @@ class ClientOrderController extends Controller
     public function index()
     {
         $orders = auth()->user()->orders()->with('items.product')->latest()->simplePaginate(3); // Only 3 orders per page
-
-        return view('client.cart.orders', compact('orders'));
+        $websiteInfo = WebsiteInfo::first(); 
+        return view('client.cart.orders', compact('orders','websiteInfo'));
     }
 
 
@@ -87,8 +88,10 @@ class ClientOrderController extends Controller
      */
     public function show(string $id)
     {
+        
         $order = auth()->user()->orders()->with('items.product')->findOrFail($id);
-        return view('client.orders.show', compact('order'));
+        $websiteInfo = WebsiteInfo::first(); 
+        return view('client.orders.show', compact('order', 'websiteInfo'));
     }
 
     /**

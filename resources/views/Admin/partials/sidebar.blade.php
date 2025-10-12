@@ -35,7 +35,12 @@
                         <i class="fas fa-receipt"></i> Orders
                     </a>
                 </li>
-                
+
+                <li>
+                    <a href="{{ route('admin.website-info.edit') }}" class="nav-item {{ request()->routeIs('admin.website-info.edit') ? 'active' : '' }}">
+                        <i class="fas fa-globe"></i> Website Info
+                    </a>
+                </li>                
             </ul>
         </nav>
 

@@ -14,20 +14,23 @@
 
     <!-- Professional note about filtering -->
     <p class="text-muted small mb-3">
-        You can search products and reuse these filters. Filters only apply to the products currently listed on this page.
+    You can search products and filter by category. Filters apply to all products in the store.
     </p>
 
     <ul class="nav flex-column" id="categoryList">
-        <li class="nav-item mb-2">
-            <button class="btn btn-outline-dark w-100 active" data-category="all">
+         <li class="nav-item mb-2">
+            <a href="{{ route('client.products.byCategory', 'all') }}" 
+            class="btn btn-outline-dark w-100 active">
                 <i class="bi bi-grid me-2"></i>All Products
-            </button>
+            </a>
         </li>
-        @foreach($categories as $category)
+
+       @foreach($categories as $category)
         <li class="nav-item mb-2">
-            <button class="btn btn-outline-dark w-100" data-category="{{ $category->id }}">
+            <a href="{{ route('client.products.byCategory', $category->id) }}" 
+            class="btn btn-outline-dark w-100">
                 <i class="bi bi-tag me-2"></i>{{ $category->name }}
-            </button>
+            </a>
         </li>
         @endforeach
     </ul>

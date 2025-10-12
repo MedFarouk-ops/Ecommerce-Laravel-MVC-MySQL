@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminPromotionController;
+use App\Http\Controllers\Admin\AdminWebsiteInfoController;
 
 use App\Http\Middleware\RoleMiddleware;
 
@@ -62,6 +63,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
     Route::put('promotions/{promotion}', [AdminPromotionController::class, 'update'])->name('promotions.update');
     Route::delete('promotions/{promotion}', [AdminPromotionController::class, 'destroy'])->name('promotions.destroy');
 
+    // Website Infor CRUDs
+    Route::get('website-info/edit', [AdminWebsiteInfoController::class, 'edit'])->name('website-info.edit');
+    Route::post('website-info/update', [AdminWebsiteInfoController::class, 'update'])->name('website-info.update');
+
 });
 
 
@@ -81,6 +86,7 @@ Route::prefix('client')->name('client.')->group(function () {
      // Cart page
     Route::get('/cart', [ClientController::class, 'cart'])->name('cart');
     Route::get('/search', [ClientController::class, 'search_product'])->name('search');
+    Route::get('/products/category/{id}', [ClientController::class, 'getByCategory'])->name('products.byCategory');
 });
 
 // Laravel auth routes
