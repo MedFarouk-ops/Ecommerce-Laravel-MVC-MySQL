@@ -18,6 +18,23 @@
         <h3 class="text-xl font-semibold text-gray-800">Order List</h3>
     </div>
 
+     <!-- Search bar -->
+    <div class="mb-6">
+    <form action="{{ route('admin.orders.search') }}" method="GET" class="flex flex-col sm:flex-row gap-3 sm:gap-2">
+        <input 
+            type="text" 
+            name="query" 
+            value="{{ request('query') }}" 
+            class="flex-1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            placeholder="Search orders by name..."
+            required>
+        <button 
+            type="submit" 
+            class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 flex items-center justify-center gap-2">
+            <i class="fa-solid fa-search"></i> Search
+        </button>
+    </form>
+
     <div class="overflow-x-auto bg-white rounded-md shadow-md">
         <table class="min-w-full text-left border-collapse">
             <thead class="bg-gray-200 text-gray-700 uppercase text-sm">

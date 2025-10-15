@@ -64,4 +64,22 @@ class AdminCategoryController extends Controller
         return redirect()->route('admin.categories.index')
                          ->with('success', 'Category deleted successfully!');
     }
+
+    // Search method
+    public function search(Request $request)
+    {
+        $query = $request->input('query'); // Get the search keyword
+
+        // Search categories by name (case-insensitive)
+        $categories = Category::where('name', 'like', "%{$query}%")
+            ->latest()
+            ->paginate(10);
+
+        // Keep the search query when paginating
+        $categories->appends(['query' => $query]);
+
+        // Return the same view with filtered results
+        return view('Admin.categories.index', compact('categories', 'query'));
+    }
+    
 }

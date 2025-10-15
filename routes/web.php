@@ -31,6 +31,13 @@ Route::middleware('auth')->group(function () {
 // Admin routes (only accessible by users with role 'admin')
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+    
+     // Search Routes
+    Route::get('/products/search', [AdminProductController::class, 'search'])->name('products.search');
+    Route::get('/categories/search', [AdminCategoryController::class, 'search'])->name('categories.search');
+    Route::get('/orders/search', [AdminOrderController::class, 'search'])->name('orders.search');
+    Route::get('/promotions/search', [AdminPromotionController::class, 'search'])->name('promotions.search');
+
     // Categories CRUD Management
     Route::get('/categories', [AdminCategoryController::class, 'index'])->name('categories.index');
     Route::get('/categories/create', [AdminCategoryController::class, 'create'])->name('categories.create');
@@ -66,7 +73,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
     // Website Information CRUDs
     Route::get('website-info/edit', [AdminWebsiteInfoController::class, 'edit'])->name('website-info.edit');
     Route::post('website-info/update', [AdminWebsiteInfoController::class, 'update'])->name('website-info.update');
-
+   
 });
 
 

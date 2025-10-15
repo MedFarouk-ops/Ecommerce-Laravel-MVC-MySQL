@@ -81,5 +81,23 @@ class AdminPromotionController extends Controller
         return view('Admin.promotions.create');
     }
 
+    // Search functionality
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $promotions = \App\Models\Promotion::where(function ($q) use ($query) {
+                $q->where('title', 'like', "%{$query}%")
+                ->orWhere('description', 'like', "%{$query}%");
+            })
+            ->orderBy('updated_at', 'desc')
+            ->paginate(10);
+
+        // Preserve the search query when paginating
+        $promotions->appends(['query' => $query]);
+
+        return view('Admin.promotions.index', compact('promotions', 'query'));
+    }
+
 
 }

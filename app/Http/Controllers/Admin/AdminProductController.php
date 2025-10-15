@@ -28,13 +28,14 @@ class AdminProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name'        => 'required|string|max:255',
             'description' => 'nullable|string',
-            'price' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:0',
+            'price'       => 'required|numeric|min:0',
+            'base_price'  => 'required|numeric|min:0', // added
+            'stock'       => 'required|integer|min:0',
             'category_id' => 'required|exists:categories,id',
-            'photo1' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'photo2' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'photo1'      => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'photo2'      => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
 
         $data = $request->all();
@@ -51,7 +52,7 @@ class AdminProductController extends Controller
         Product::create($data);
 
         return redirect()->route('admin.products.index')
-                         ->with('success', 'Product created successfully!');
+                        ->with('success', 'Product created successfully!');
     }
 
     public function edit(Product $product)
@@ -60,16 +61,17 @@ class AdminProductController extends Controller
         return view('Admin.products.edit', compact('product', 'categories'));
     }
 
-    public function update(Request $request, Product $product)
+   public function update(Request $request, Product $product)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name'        => 'required|string|max:255',
             'description' => 'nullable|string',
-            'price' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:0',
+            'price'       => 'required|numeric|min:0',
+            'base_price'  => 'required|numeric|min:0', // added
+            'stock'       => 'required|integer|min:0',
             'category_id' => 'required|exists:categories,id',
-            'photo1' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'photo2' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'photo1'      => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'photo2'      => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
 
         $data = $request->all();
@@ -86,8 +88,9 @@ class AdminProductController extends Controller
         $product->update($data);
 
         return redirect()->route('admin.products.index')
-                         ->with('success', 'Product updated successfully.');
-        }
+                        ->with('success', 'Product updated successfully.');
+    }
+
 
         public function destroy(Product $product)
         {
@@ -95,5 +98,23 @@ class AdminProductController extends Controller
 
             return redirect()->route('admin.products.index')
                             ->with('success', 'Product deleted successfully!');
+        }
+
+        // Search method
+        public function search(Request $request)
+        {
+            $query = $request->input('query'); // Get the search input from the request
+
+            // Search products by name and paginate results (10 per page)
+            $products = Product::with('category')
+                ->where('name', 'like', "%{$query}%")
+                ->latest()
+                ->paginate(10);
+
+            // Keep the query in pagination links
+            $products->appends(['query' => $query]);
+
+            // Return the same index view with filtered results
+            return view('Admin.products.index', compact('products', 'query'));
         }
 }

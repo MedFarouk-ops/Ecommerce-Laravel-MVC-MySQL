@@ -21,6 +21,22 @@
             <i class="fa-solid fa-plus"></i> Add Product
         </a>
     </div>
+    <!-- Search bar -->
+    <div class="mb-6">
+    <form action="{{ route('admin.products.search') }}" method="GET" class="flex flex-col sm:flex-row gap-3 sm:gap-2">
+        <input 
+            type="text" 
+            name="query" 
+            value="{{ request('query') }}" 
+            class="flex-1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            placeholder="Search products by name..."
+            required>
+        <button 
+            type="submit" 
+            class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 flex items-center justify-center gap-2">
+            <i class="fa-solid fa-search"></i> Search
+        </button>
+    </form>
 
     <!-- Table -->
     <div class="overflow-x-auto bg-white rounded-md shadow-md">
@@ -28,6 +44,7 @@
             <thead class="bg-gray-100 text-gray-600 uppercase text-sm">
                 <tr>
                     <th class="px-4 py-3 border-b">#</th>
+                    <th class="px-4 py-3 border-b">Preview</th>
                     <th class="px-4 py-3 border-b">Name</th>
                     <th class="px-4 py-3 border-b">Category</th>
                     <th class="px-4 py-3 border-b">Price (DT)</th>
@@ -39,6 +56,15 @@
                 @foreach($products as $product)
                 <tr class="hover:bg-gray-200/30 transition">
                     <td class="px-4 py-2 border-b">{{ $product->id }}</td>
+                    <td class="px-4 py-2 border-b">
+                        @if($product->photo1)
+                            <img src="{{ asset('storage/' . $product->photo1) }}"
+                                 alt="{{ $product->name }}"
+                                 class="w-16 h-16 object-cover rounded-md border">
+                        @else
+                            <span class="text-gray-400">No Image</span>
+                        @endif
+                    </td>
                     <td class="px-4 py-2 border-b">{{ $product->name }}</td>
                     <td class="px-4 py-2 border-b">{{ $product->category->name ?? 'N/A' }}</td>
                     <td class="px-4 py-2 border-b">{{ $product->price }}</td>

@@ -44,6 +44,13 @@
         </div>
 
         <div>
+            <label for="base_price" class="block text-gray-700 font-medium">Base Price</label>
+            <input type="number" name="base_price" id="base_price" value="{{ old('base_price', $product->base_price) }}" step="0.01"
+                   class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
+                   placeholder="Enter price" required>
+        </div>
+
+        <div>
             <label for="stock" class="block text-gray-700 font-medium">Stock</label>
             <input type="number" name="stock" id="stock" value="{{ old('stock', $product->stock) }}" min="0"
                    class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"

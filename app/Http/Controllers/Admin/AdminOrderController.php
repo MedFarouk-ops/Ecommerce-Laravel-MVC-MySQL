@@ -150,4 +150,87 @@ class AdminOrderController extends Controller
             ->route('admin.orders.index')
             ->with('success', 'Order deleted successfully.');
     }
+
+    // Search order by user name
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $orders = \App\Models\Order::with(['user', 'items.product'])
+            ->where(function ($q) use ($query) {
+                // Search in order fields
+                $q->where('first_name', 'like', "%{$query}%")
+                ->orWhere('last_name', 'like', "%{$query}%")
+                ->orWhere('phone', 'like', "%{$query}%");
+            })
+            ->orWhereHas('user', function ($q) use ($query) {
+                // Search in related user
+                $q->where('name', 'like', "%{$query}%")
+                ->orWhere('email', 'like', "%{$query}%");
+            })
+            ->orderBy('updated_at', 'desc')
+            ->paginate(10);
+
+        // Preserve query in pagination links
+        $orders->appends(['query' => $query]);
+
+        return view('Admin.orders.index', compact('orders', 'query'));
+    }
+
+    private function getNetRevenueToday()
+    {
+        return $this->calculateNetRevenue(Carbon::today(), Carbon::today());
+    }
+
+    private function getNetRevenueYesterday()
+    {
+        return $this->calculateNetRevenue(Carbon::yesterday(), Carbon::yesterday());
+    }
+
+    private function getNetRevenueLast7Days()
+    {
+        return $this->calculateNetRevenue(Carbon::now()->subDays(6), Carbon::now());
+    }
+
+    private function getNetRevenueLast28Days()
+    {
+        return $this->calculateNetRevenue(Carbon::now()->subDays(27), Carbon::now());
+    }
+
+    private function getNetRevenueThisMonth()
+    {
+        $start = Carbon::now()->startOfMonth();
+        $end = Carbon::now()->endOfMonth();
+        return $this->calculateNetRevenue($start, $end);
+    }
+
+    private function getNetRevenueLastMonth()
+    {
+        $start = Carbon::now()->subMonth()->startOfMonth();
+        $end = Carbon::now()->subMonth()->endOfMonth();
+        return $this->calculateNetRevenue($start, $end);
+    }
+
+    /**
+     * Core calculation method
+     */
+    private function calculateNetRevenue($startDate, $endDate)
+    {
+        $orders = \App\Models\Order::with('items.product')
+            ->where('status', 'completed')
+            ->whereBetween('created_at', [$startDate, $endDate])
+            ->get();
+
+        $netRevenue = 0;
+
+        foreach ($orders as $order) {
+            foreach ($order->items as $item) {
+                $profit = ($item->product->price - $item->product->base_price) * $item->quantity;
+                $netRevenue += $profit;
+            }
+        }
+
+        return $netRevenue;
+    }
+
 }

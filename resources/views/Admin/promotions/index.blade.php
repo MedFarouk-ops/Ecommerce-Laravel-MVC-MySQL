@@ -24,6 +24,22 @@
         </a>
     </div>
 
+    <div class="mb-6">
+    <form action="{{ route('admin.promotions.search') }}" method="GET" class="flex flex-col sm:flex-row gap-3 sm:gap-2">
+        <input 
+            type="text" 
+            name="query" 
+            value="{{ request('query') }}" 
+            class="flex-1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            placeholder="Search promotions by name or link..."
+            required>
+        <button 
+            type="submit" 
+            class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 flex items-center justify-center gap-2">
+            <i class="fa-solid fa-search"></i> Search
+        </button>
+    </form>
+
     <!-- 📋 Table -->
     <div class="overflow-x-auto bg-white rounded-md shadow-md">
         <table class="min-w-full text-left border-collapse">
