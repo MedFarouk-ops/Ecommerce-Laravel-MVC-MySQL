@@ -61,10 +61,42 @@
                 margin-left: 256px; /* Width of sidebar */
             }
         }
+
+         /* Spinner styles */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+        #loader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #e5e7eb;
+            border-top-color: #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
     </style>
 </head>
 <body class="bg-gray-50">
-
+    <!-- Loader Spinner -->
+    <div id="loader">
+        <div class="spinner"></div>
+    </div>
     <!-- Sidebar -->
     @include('Admin.partials.sidebar')
 
@@ -81,6 +113,12 @@
     <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden hidden"></div>
 
     @stack('scripts')
-
+    <script>
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            loader.classList.add('fade-out');
+            setTimeout(() => loader.style.display = 'none', 500);
+        });
+    </script>
 </body>
 </html>
