@@ -203,24 +203,36 @@ class AdminController extends Controller
 
     private function getNetRevenueToday()
     {
-        return $this->calculateNetRevenue(Carbon::today(), Carbon::today());
+        $startOfDay = Carbon::today()->startOfDay(); // 00:00:00
+        $endOfDay = Carbon::today()->endOfDay();     // 23:59:59
+
+        return $this->calculateNetRevenue($startOfDay, $endOfDay);
     }
 
     private function getNetRevenueYesterday()
     {
-        return $this->calculateNetRevenue(Carbon::yesterday(), Carbon::yesterday());
+        $startOfYesterday = Carbon::yesterday()->startOfDay(); // 00:00:00
+        $endOfYesterday = Carbon::yesterday()->endOfDay();     // 23:59:59
+
+        return $this->calculateNetRevenue($startOfYesterday, $endOfYesterday);
     }
 
     private function getNetRevenueLast7Days()
     {
-        return $this->calculateNetRevenue(Carbon::now()->subDays(6), Carbon::now());
+        $startDate = Carbon::now()->subDays(6)->startOfDay(); // 6 days ago, 00:00:00
+        $endDate   = Carbon::now()->endOfDay();               // today, 23:59:59
+
+        return $this->calculateNetRevenue($startDate, $endDate);
     }
 
     private function getNetRevenueLast28Days()
     {
-        return $this->calculateNetRevenue(Carbon::now()->subDays(27), Carbon::now());
-    }
+        $startDate = Carbon::now()->subDays(27)->startOfDay(); // 27 days ago, 00:00:00
+        $endDate   = Carbon::now()->endOfDay();               // today, 23:59:59
 
+        return $this->calculateNetRevenue($startDate, $endDate);
+    }
+    
     private function getNetRevenueThisMonth()
     {
         $start = Carbon::now()->startOfMonth();
