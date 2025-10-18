@@ -23,8 +23,8 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <h2 class="fw-bold mb-3 display-5">Quality Electronics, Delivered Fast</h2>
-                    <p class="lead mb-4">Reliable gadgets for home, work, and play. Explore the latest in electronics with secure checkout and fast shipping.</p>
+                    <h2 class="fw-bold mb-3 display-5">{{ $websiteInfo->hero_title ?? 'Quality Electronics, Delivered Fast' }}</h2>
+                    <p class="lead mb-4">{{ $websiteInfo->hero_description ?? 'Reliable gadgets for home, work, and play. Explore the latest in electronics with secure checkout and fast shipping.' }}</p>
                     <div class="d-flex justify-content-center gap-3 flex-wrap">
                         <span class="badge bg-white text-primary px-3 py-2 fs-6">
                             <i class="bi bi-truck me-2"></i>Free Shipping
