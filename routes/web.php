@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 // Client
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Client\ClientOrderController;
+use App\Http\Controllers\Client\StaticPagesController;
 
 // Admin
 use App\Http\Controllers\Admin\AdminController;
@@ -94,6 +95,14 @@ Route::prefix('client')->name('client.')->group(function () {
     Route::get('/cart', [ClientController::class, 'cart'])->name('cart');
     Route::get('/search', [ClientController::class, 'search_product'])->name('search');
     Route::get('/products/category/{id}', [ClientController::class, 'getByCategory'])->name('products.byCategory');
+
+        // ===== Static pages =====
+    Route::get('/about', [StaticPagesController::class, 'about'])->name('pages.about');
+    Route::get('/contact', [StaticPagesController::class, 'contact'])->name('pages.contact');
+    Route::get('/faq', [StaticPagesController::class, 'faq'])->name('pages.faq');
+    Route::get('/privacy', [StaticPagesController::class, 'privacy'])->name('pages.privacy');
+    Route::get('/terms', [StaticPagesController::class, 'terms'])->name('pages.terms');
+
 });
 
 // Laravel auth routes

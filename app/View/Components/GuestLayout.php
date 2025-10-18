@@ -10,8 +10,12 @@ class GuestLayout extends Component
     /**
      * Get the view / contents that represents the component.
      */
-    public function render(): View
+   public function render(): View
     {
-        return view('layouts.guest');
+        $websiteInfo = \App\Models\WebsiteInfo::first();
+
+        return view('layouts.guest', [
+            'websiteInfo' => $websiteInfo,
+        ]);
     }
 }

@@ -19,5 +19,22 @@ class WebsiteInfo extends Model
         'twitter',
         'instagram',
         'linkedin',
-        ];
+
+        // New info sections
+        'shipping_info',
+        'secure_payment_info',
+        'easy_returns_info',
+
+        // Website pages
+        'about_us_title',
+        'about_us_description',
+        'contact_title',
+        'contact_description',
+        'faq_title',
+        'faq_description',
+        'privacy_policy_title',
+        'privacy_policy_description',
+        'terms_service_title',
+        'terms_service_description',
+    ];
 }

@@ -16,16 +16,16 @@
             </div>
 
             <!-- Quick Links -->
-            <div class="col-md-4 mb-4">
-                <h6 class="fw-bold">Quick Links</h6>
-                <ul class="list-unstyled">
-                    <li><a href="/about" class="text-decoration-none text-dark">About Us</a></li>
-                    <li><a href="/contact" class="text-decoration-none text-dark">Contact</a></li>
-                    <li><a href="/faq" class="text-decoration-none text-dark">FAQ</a></li>
-                    <li><a href="/privacy" class="text-decoration-none text-dark">Privacy Policy</a></li>
-                    <li><a href="/terms" class="text-decoration-none text-dark">Terms of Service</a></li>
-                </ul>
-            </div>
+          <div class="col-md-4 mb-4">
+            <h6 class="fw-bold">Quick Links</h6>
+            <ul class="list-unstyled">
+                <li><a href="{{ route('client.pages.about') }}" class="text-decoration-none text-dark">About Us</a></li>
+                <li><a href="{{ route('client.pages.contact') }}" class="text-decoration-none text-dark">Contact</a></li>
+                <li><a href="{{ route('client.pages.faq') }}" class="text-decoration-none text-dark">FAQ</a></li>
+                <li><a href="{{ route('client.pages.privacy') }}" class="text-decoration-none text-dark">Privacy Policy</a></li>
+                <li><a href="{{ route('client.pages.terms') }}" class="text-decoration-none text-dark">Terms of Service</a></li>
+            </ul>
+        </div>
 
             <!-- Contact / Social -->
             <div class="col-md-4 mb-4">

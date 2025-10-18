@@ -4,9 +4,10 @@
 @section('page-title', 'Edit Website Information')
 
 @section('content')
-<div class="max-w-3xl mx-auto bg-white p-6 rounded-md shadow-md">
+<div class="max-w-5xl mx-auto bg-white p-6 rounded-md shadow-md">
     <h3 class="text-xl font-semibold text-gray-800 mb-4">Edit Website Information</h3>
 
+    {{-- Validation Errors --}}
     @if ($errors->any())
         <div class="bg-red-100 text-red-600 px-4 py-2 rounded mb-4">
             <ul class="list-disc list-inside">
@@ -17,6 +18,7 @@
         </div>
     @endif
 
+    {{-- Success Message --}}
     @if(session('success'))
         <div class="bg-green-100 text-green-600 px-4 py-2 rounded mb-4">
             {{ session('success') }}
@@ -30,8 +32,8 @@
         <div>
             <label for="name" class="block text-gray-700 font-medium">Website Name</label>
             <input type="text" name="name" id="name" value="{{ old('name', $info->name ?? '') }}"
-                   class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
-                   placeholder="Enter website name" required>
+                class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
+                placeholder="Enter website name" required>
         </div>
 
         {{-- Logo --}}
@@ -43,30 +45,30 @@
                 </div>
             @endif
             <input type="file" name="logo" id="logo" accept="image/*"
-                   class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400">
+                class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400">
         </div>
 
         {{-- Hero Section --}}
         <div>
             <label for="hero_title" class="block text-gray-700 font-medium">Hero Title</label>
             <input type="text" name="hero_title" id="hero_title" value="{{ old('hero_title', $info->hero_title ?? '') }}"
-                   class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
-                   placeholder="Enter hero title">
+                class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
+                placeholder="Enter hero title">
         </div>
 
         <div>
             <label for="hero_description" class="block text-gray-700 font-medium">Hero Description</label>
             <textarea name="hero_description" id="hero_description" rows="3"
-                      class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
-                      placeholder="Enter hero description">{{ old('hero_description', $info->hero_description ?? '') }}</textarea>
+                class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
+                placeholder="Enter hero description">{{ old('hero_description', $info->hero_description ?? '') }}</textarea>
         </div>
 
         {{-- About / Footer --}}
         <div>
             <label for="about_description" class="block text-gray-700 font-medium">About / Footer Description</label>
             <textarea name="about_description" id="about_description" rows="3"
-                      class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
-                      placeholder="Enter about/footer description">{{ old('about_description', $info->about_description ?? '') }}</textarea>
+                class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
+                placeholder="Enter about/footer description">{{ old('about_description', $info->about_description ?? '') }}</textarea>
         </div>
 
         {{-- Contact Info --}}
@@ -74,20 +76,20 @@
             <div>
                 <label for="phone" class="block text-gray-700 font-medium">Phone</label>
                 <input type="text" name="phone" id="phone" value="{{ old('phone', $info->phone ?? '') }}"
-                       class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
-                       placeholder="Enter phone">
+                    class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
+                    placeholder="Enter phone">
             </div>
             <div>
                 <label for="email" class="block text-gray-700 font-medium">Email</label>
                 <input type="email" name="email" id="email" value="{{ old('email', $info->email ?? '') }}"
-                       class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
-                       placeholder="Enter email">
+                    class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
+                    placeholder="Enter email">
             </div>
             <div>
                 <label for="address" class="block text-gray-700 font-medium">Address</label>
                 <input type="text" name="address" id="address" value="{{ old('address', $info->address ?? '') }}"
-                       class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
-                       placeholder="Enter address">
+                    class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
+                    placeholder="Enter address">
             </div>
         </div>
 
@@ -96,37 +98,88 @@
             <div>
                 <label for="facebook" class="block text-gray-700 font-medium">Facebook</label>
                 <input type="url" name="facebook" id="facebook" value="{{ old('facebook', $info->facebook ?? '') }}"
-                       class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
-                       placeholder="Enter Facebook URL">
+                    class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
+                    placeholder="Enter Facebook URL">
             </div>
             <div>
                 <label for="twitter" class="block text-gray-700 font-medium">Twitter</label>
                 <input type="url" name="twitter" id="twitter" value="{{ old('twitter', $info->twitter ?? '') }}"
-                       class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
-                       placeholder="Enter Twitter URL">
+                    class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
+                    placeholder="Enter Twitter URL">
             </div>
             <div>
                 <label for="instagram" class="block text-gray-700 font-medium">Instagram</label>
                 <input type="url" name="instagram" id="instagram" value="{{ old('instagram', $info->instagram ?? '') }}"
-                       class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
-                       placeholder="Enter Instagram URL">
+                    class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
+                    placeholder="Enter Instagram URL">
             </div>
             <div>
                 <label for="linkedin" class="block text-gray-700 font-medium">LinkedIn</label>
                 <input type="url" name="linkedin" id="linkedin" value="{{ old('linkedin', $info->linkedin ?? '') }}"
-                       class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
-                       placeholder="Enter LinkedIn URL">
+                    class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
+                    placeholder="Enter LinkedIn URL">
             </div>
         </div>
 
+        {{-- ============ NEW INFO SECTIONS ============ --}}
+
+        <hr class="my-6 border-gray-300">
+
+        <h4 class="text-lg font-semibold text-gray-800">Additional Information</h4>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+                <label for="shipping_info" class="block text-gray-700 font-medium">Free Shipping Info</label>
+                <textarea name="shipping_info" id="shipping_info" rows="2"
+                    class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
+                    placeholder="Enter shipping info">{{ old('shipping_info', $info->shipping_info ?? '') }}</textarea>
+            </div>
+            <div>
+                <label for="secure_payment_info" class="block text-gray-700 font-medium">Secure Payment Info</label>
+                <textarea name="secure_payment_info" id="secure_payment_info" rows="2"
+                    class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
+                    placeholder="Enter secure payment info">{{ old('secure_payment_info', $info->secure_payment_info ?? '') }}</textarea>
+            </div>
+            <div>
+                <label for="easy_returns_info" class="block text-gray-700 font-medium">Easy Returns Info</label>
+                <textarea name="easy_returns_info" id="easy_returns_info" rows="2"
+                    class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
+                    placeholder="Enter easy returns info">{{ old('easy_returns_info', $info->easy_returns_info ?? '') }}</textarea>
+            </div>
+        </div>
+
+        {{-- Website Pages --}}
+        <hr class="my-6 border-gray-300">
+        <h4 class="text-lg font-semibold text-gray-800">Website Pages Content</h4>
+
+        @foreach ([
+            'about_us' => 'About Us',
+            'contact' => 'Contact',
+            'faq' => 'FAQ',
+            'privacy_policy' => 'Privacy Policy',
+            'terms_service' => 'Terms of Service'
+        ] as $key => $label)
+            <div class="mt-4">
+                <label class="block text-gray-700 font-medium">{{ $label }} Title</label>
+                <input type="text" name="{{ $key }}_title" value="{{ old($key.'_title', $info->{$key.'_title'} ?? '') }}"
+                    class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
+                    placeholder="Enter {{ strtolower($label) }} title">
+
+                <label class="block text-gray-700 font-medium mt-2">{{ $label }} Description</label>
+                <textarea name="{{ $key }}_description" rows="3"
+                    class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
+                    placeholder="Enter {{ strtolower($label) }} description">{{ old($key.'_description', $info->{$key.'_description'} ?? '') }}</textarea>
+            </div>
+        @endforeach
+
         {{-- Submit --}}
-        <div class="flex justify-end gap-3 mt-4">
+        <div class="flex justify-end gap-3 mt-6">
             <a href="{{ route('admin.dashboard') }}"
-               class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600">
-               Cancel
+                class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600">
+                Cancel
             </a>
             <button type="submit"
-                    class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+                class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
                 <i class="fa-solid fa-save mr-1"></i> Update
             </button>
         </div>
