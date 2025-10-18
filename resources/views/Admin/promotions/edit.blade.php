@@ -67,9 +67,10 @@
 
         {{-- ✅ Active Toggle --}}
         <div class="flex items-center gap-2">
+       <input type="hidden" name="is_active" value="0">
             <input type="checkbox" name="is_active" id="is_active" value="1"
-                   class="w-4 h-4 text-blue-500 border-gray-300 rounded focus:ring-blue-400"
-                   {{ old('is_active', $promotion->is_active) ? 'checked' : '' }}>
+                class="w-4 h-4 text-blue-500 border-gray-300 rounded focus:ring-blue-400"
+                {{ old('is_active', $promotion->is_active) ? 'checked' : '' }}>
             <label for="is_active" class="text-gray-700 font-medium">Active</label>
         </div>
 
