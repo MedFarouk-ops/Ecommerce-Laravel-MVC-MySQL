@@ -50,6 +50,7 @@ class ClientOrderController extends Controller
             'items.*.qty' => 'required|integer|min:1',
             'items.*.price' => 'required|numeric|min:0',
             'total' => 'required|numeric|min:0',
+            'shipping_cost' => 'required|numeric|min:0',
         ]);
 
         $c = $validated['customer'];
@@ -67,6 +68,7 @@ class ClientOrderController extends Controller
             'notes' => $c['notes'] ?? null,
             'payment_method' => $validated['payment'],
             'total_amount' => $validated['total'],
+            'shipping_cost' => $validated['shipping_cost'],
             'status' => 'pending',
         ]);
 

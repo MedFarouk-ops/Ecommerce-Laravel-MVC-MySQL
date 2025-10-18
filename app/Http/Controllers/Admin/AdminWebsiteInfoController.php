@@ -44,6 +44,7 @@ class AdminWebsiteInfoController extends Controller
             'currency' => 'nullable|string|max:10',
             // Website shipping fee
             'shipping_fee' => 'required|integer|min:0',
+            'free_shipping_threshhold' => 'required|integer|min:0',
             // Page titles and descriptions
             'about_us_title' => 'nullable|string|max:255',
             'about_us_description' => 'nullable|string',
@@ -68,7 +69,7 @@ class AdminWebsiteInfoController extends Controller
         // Assign general fields
         $generalFields = [
             'name', 'hero_title', 'hero_description', 'about_description',
-            'phone', 'email', 'address', 'facebook', 'twitter', 'instagram', 'linkedin','currency', 'shipping_fee',
+            'phone', 'email', 'address', 'facebook', 'twitter', 'instagram', 'linkedin','currency', 'shipping_fee','free_shipping_threshhold',
             'shipping_info', 'secure_payment_info', 'easy_returns_info'
         ];
 

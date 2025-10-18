@@ -40,5 +40,6 @@ class WebsiteInfo extends Model
         // Website currency
         'currency',
         'shipping_fee',
+        'free_shipping_threshhold',
     ];
 }

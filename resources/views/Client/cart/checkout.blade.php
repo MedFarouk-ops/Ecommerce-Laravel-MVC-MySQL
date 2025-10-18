@@ -210,6 +210,11 @@
 
     <!-- Footer -->
     @include('Client.components.footer')
+    <script>
+        const WEBSITE_SHIPPING_FEE = {{ $websiteInfo->shipping_fee ?? 7 }};
+        const WEBSITE_FREE_SHIPPING_THRESHOLD = {{ $websiteInfo->free_shipping_threshold ?? 300 }};
+        const WEBSITE_CURRENCY = "{{ $websiteInfo->currency ?? 'DT' }}";
+    </script>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

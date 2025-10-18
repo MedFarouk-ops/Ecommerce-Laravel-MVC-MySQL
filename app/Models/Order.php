@@ -21,6 +21,7 @@ class Order extends Model
         'notes',
         'payment_method',
         'total_amount',
+        'shipping_cost',
         'status', // pending, processing, etc.
     ];
 

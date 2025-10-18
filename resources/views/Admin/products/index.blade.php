@@ -47,7 +47,7 @@
                     <th class="px-4 py-3 border-b">Preview</th>
                     <th class="px-4 py-3 border-b">Name</th>
                     <th class="px-4 py-3 border-b">Category</th>
-                    <th class="px-4 py-3 border-b">Price (DT)</th>
+                    <th class="px-4 py-3 border-b">Price</th>
                     <th class="px-4 py-3 border-b">Stock</th>
                     <th class="px-4 py-3 border-b text-center">Actions</th>
                 </tr>

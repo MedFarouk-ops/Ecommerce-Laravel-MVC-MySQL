@@ -123,6 +123,15 @@
                 placeholder="Enter shipping fee" required>
         </div>
 
+        {{-- Free Shipping Threshhold --}}
+
+        <div class="mt-4">
+            <label for="free_shipping_threshhold" class="block text-gray-700 font-medium">Free Shipping threshhold</label>
+            <input type="number" name="free_shipping_threshhold" id="free_shipping_threshhold" min="0" step="1"
+                value="{{ old('free_shipping_threshhold', $info->free_shipping_threshhold ?? 0) }}"
+                class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
+                placeholder="Enter shipping fee" required>
+        </div>
         {{-- Hero Section --}}
         <div>
             <label for="hero_title" class="block text-gray-700 font-medium">Hero Title</label>

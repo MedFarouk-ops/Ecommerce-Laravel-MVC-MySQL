@@ -7,9 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const orderTotalEl = document.getElementById('orderTotal');
     const checkoutForm = document.getElementById('checkoutForm');
     const placeOrderBtn = document.getElementById('placeOrderBtn');
-
-    const SHIPPING_COST = 7;
-    const FREE_SHIPPING_THRESHOLD = 200;
+    
+    const SHIPPING_COST = WEBSITE_SHIPPING_FEE;
+    const FREE_SHIPPING_THRESHOLD = FREE_SHIPPING_THRESHOLD;
 
     // --- Render Order Summary ---
     function renderOrderSummary() {
@@ -103,8 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // --- Calculate totals ---
         const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-        const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_COST;
-        const total = subtotal + shipping;
+        const shipping_cost = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_COST;
+        const total = subtotal + shipping_cost;
 
         // --- Prepare order payload ---
         const orderData = {
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 price: item.price
             })),
             subtotal,
-            shipping,
+            shipping_cost,
             total
         };
 
