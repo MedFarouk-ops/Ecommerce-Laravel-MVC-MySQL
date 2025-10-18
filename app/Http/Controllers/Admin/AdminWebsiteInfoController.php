@@ -40,7 +40,10 @@ class AdminWebsiteInfoController extends Controller
             'shipping_info' => 'nullable|string',
             'secure_payment_info' => 'nullable|string',
             'easy_returns_info' => 'nullable|string',
-
+            // Website currency
+            'currency' => 'nullable|string|max:10',
+            // Website shipping fee
+            'shipping_fee' => 'required|integer|min:0',
             // Page titles and descriptions
             'about_us_title' => 'nullable|string|max:255',
             'about_us_description' => 'nullable|string',
@@ -65,7 +68,7 @@ class AdminWebsiteInfoController extends Controller
         // Assign general fields
         $generalFields = [
             'name', 'hero_title', 'hero_description', 'about_description',
-            'phone', 'email', 'address', 'facebook', 'twitter', 'instagram', 'linkedin',
+            'phone', 'email', 'address', 'facebook', 'twitter', 'instagram', 'linkedin','currency', 'shipping_fee',
             'shipping_info', 'secure_payment_info', 'easy_returns_info'
         ];
 

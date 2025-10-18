@@ -1,11 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     const cartCount = document.getElementById('cartCount');
     const cartItemsList = document.getElementById('cartItemsList');
     const tbody = document.getElementById('cartBody');
     const subtotalEl = document.getElementById('subtotal');
     const totalEl = document.getElementById('total');
+    const shippingEl = document.getElementById('shipping');
+
+    // --- Get shipping fee and currency safely ---
+    let shippingFee = 0;
+    let currency = 'DT';
+    if (shippingEl) {
+        const match = shippingEl.textContent.match(/([\d.]+)/);
+        if (match) shippingFee = parseFloat(match[0]) || 0;
+        currency = shippingEl.textContent.replace(/[\d.,\s]/g, '') || 'DT';
+    }
 
     // --- Navbar Cart Update ---
     function updateNavbarCart() {
@@ -20,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cartItemsList.innerHTML = cart.map(item => `
                 <li class="d-flex justify-content-between align-items-center mb-1">
                     <span>${item.name}</span>
-                    <span class="fw-bold">${item.qty}×${item.price} DT</span>
+                    <span class="fw-bold">${item.qty}×${item.price} ${currency}</span>
                 </li>
             `).join('');
         }
@@ -35,8 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (cart.length === 0) {
             tbody.innerHTML = `<tr><td colspan="6" class="text-center text-muted">Your cart is empty</td></tr>`;
-            if (subtotalEl) subtotalEl.textContent = '0 DT';
-            if (totalEl) totalEl.textContent = '0 DT';
+            if (subtotalEl) subtotalEl.textContent = '0 ' + currency;
+            if (totalEl) totalEl.textContent = '0 ' + currency;
             return;
         }
 
@@ -48,11 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 <tr>
                     <td class="d-none d-md-table-cell"><i class="bi bi-box fs-3 text-secondary"></i></td>
                     <td class="d-none d-md-table-cell fw-semibold">${item.name}</td>
-                    <td class="d-none d-md-table-cell">${item.price} DT</td>
+                    <td class="d-none d-md-table-cell">${item.price} ${currency}</td>
                     <td class="d-none d-md-table-cell">
                         <input type="number" value="${item.qty}" min="1" max="${item.stock}" class="form-control form-control-sm quantity-input" data-index="${index}">
                     </td>
-                    <td class="d-none d-md-table-cell fw-bold">${totalPrice} DT</td>
+                    <td class="d-none d-md-table-cell fw-bold">${totalPrice} ${currency}</td>
                     <td class="d-none d-md-table-cell">
                         <button class="btn btn-outline-danger btn-sm remove-btn" data-index="${index}"><i class="bi bi-trash"></i></button>
                     </td>
@@ -62,12 +72,12 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <i class="bi bi-box"></i>
                                 <div>
                                     <div class="fw-semibold">${item.name}</div>
-                                    <div class="text-muted small">${item.price} DT</div>
+                                    <div class="text-muted small">${item.price} ${currency}</div>
                                 </div>
                             </div>
                             <div class="cart-right">
                                 <input type="number" value="${item.qty}" min="1" max="${item.stock}" class="form-control form-control-sm quantity-input" data-index="${index}">
-                                <span class="fw-bold">${totalPrice} DT</span>
+                                <span class="fw-bold">${totalPrice} ${currency}</span>
                                 <button class="btn btn-outline-danger btn-sm remove-btn" data-index="${index}"><i class="bi bi-trash"></i></button>
                             </div>
                         </div>
@@ -76,9 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         });
 
-        if (subtotalEl) subtotalEl.textContent = subtotal.toFixed(2) + ' DT';
-        if (totalEl) totalEl.textContent = (subtotal + 5).toFixed(2) + ' DT';
-
+        if (subtotalEl) subtotalEl.textContent = subtotal.toFixed(2) + ' ' + currency;
+        if (totalEl) totalEl.textContent = (subtotal + shippingFee).toFixed(2) + ' ' + currency;
+    
         attachCartPageEvents();
     }
 

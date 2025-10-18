@@ -36,5 +36,9 @@ class WebsiteInfo extends Model
         'privacy_policy_description',
         'terms_service_title',
         'terms_service_description',
+
+        // Website currency
+        'currency',
+        'shipping_fee',
     ];
 }

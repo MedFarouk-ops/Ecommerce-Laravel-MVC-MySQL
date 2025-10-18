@@ -87,17 +87,17 @@
                     <div class="details-content">
                         <h1 class="product-title">{{ $product->name }}</h1>
 
-                        <div class="product-rating mb-3">
+                        <!-- <div class="product-rating mb-3">
                             <i class="bi bi-star-fill text-warning"></i>
                             <i class="bi bi-star-fill text-warning"></i>
                             <i class="bi bi-star-fill text-warning"></i>
                             <i class="bi bi-star-fill text-warning"></i>
                             <i class="bi bi-star-half text-warning"></i>
                             <span class="ms-2 text-muted">(4.5/5) - 128 reviews</span>
-                        </div>
+                        </div> -->
 
                         <div class="price-section">
-                            <div class="current-price">{{ number_format($product->price, 2) }} DT</div>
+                            <div class="current-price">{{ number_format($product->price, 2) }} {{$websiteInfo->currency ?? 'DT'}}</div>
                         </div>
 
                         <div class="stock-info">

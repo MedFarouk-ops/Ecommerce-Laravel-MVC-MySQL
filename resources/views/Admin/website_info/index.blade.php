@@ -48,6 +48,81 @@
                 class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400">
         </div>
 
+        {{-- Website Currency --}}
+        <div class="mt-4">
+                <label for="currency" class="block text-gray-700 font-medium">Website Currency</label>
+            <select name="currency" id="currency"
+                class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400">
+                @php
+                    $currencies = [
+                        // Global
+                        'USD' => 'US Dollar (USD)',
+                        'EUR' => 'Euro (EUR)',
+                        'GBP' => 'British Pound (GBP)',
+                        'JPY' => 'Japanese Yen (JPY)',
+                        'AUD' => 'Australian Dollar (AUD)',
+                        'CAD' => 'Canadian Dollar (CAD)',
+                        'CHF' => 'Swiss Franc (CHF)',
+                        'CNY' => 'Chinese Yuan (CNY)',
+                        'HKD' => 'Hong Kong Dollar (HKD)',
+                        'INR' => 'Indian Rupee (INR)',
+                        'SGD' => 'Singapore Dollar (SGD)',
+                        'NZD' => 'New Zealand Dollar (NZD)',
+
+                        // African
+                        'ZAR' => 'South African Rand (ZAR)',
+                        'NGN' => 'Nigerian Naira (NGN)',
+                        'KES' => 'Kenyan Shilling (KES)',
+                        'GHS' => 'Ghanaian Cedi (GHS)',
+                        'TZS' => 'Tanzanian Shilling (TZS)',
+
+                        // Asian
+                        'KRW' => 'South Korean Won (KRW)',
+                        'THB' => 'Thai Baht (THB)',
+                        'MYR' => 'Malaysian Ringgit (MYR)',
+                        'PHP' => 'Philippine Peso (PHP)',
+                        'VND' => 'Vietnamese Dong (VND)',
+                        'IDR' => 'Indonesian Rupiah (IDR)',
+
+                        // Arab countries
+                        'AED' => 'UAE Dirham (AED)',
+                        'SAR' => 'Saudi Riyal (SAR)',
+                        'KWD' => 'Kuwaiti Dinar (KWD)',
+                        'QAR' => 'Qatari Riyal (QAR)',
+                        'BHD' => 'Bahraini Dinar (BHD)',
+                        'OMR' => 'Omani Rial (OMR)',
+                        'JOD' => 'Jordanian Dinar (JOD)',
+                        'EGP' => 'Egyptian Pound (EGP)',
+                        'MAD' => 'Moroccan Dirham (MAD)',
+                        'DZD' => 'Algerian Dinar (DZD)',
+                        'TND' => 'Tunisian Dinar (TND)',
+                        'LYD' => 'Libyan Dinar (LYD)',
+                        'IQD' => 'Iraqi Dinar (IQD)',
+                        'SDG' => 'Sudanese Pound (SDG)',
+                        'SYP' => 'Syrian Pound (SYP)',
+                        'LBP' => 'Lebanese Pound (LBP)',
+                        'MRU' => 'Mauritanian Ouguiya (MRU)',
+                        'JOD' => 'Jordanian Dinar (JOD)',
+                    ];
+                @endphp
+
+                @foreach($currencies as $code => $label)
+                    <option value="{{ $code }}" {{ old('currency', $info->currency ?? '') === $code ? 'selected' : '' }}>
+                        {{ $label }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+        {{-- Shipping fee --}}
+
+        <div class="mt-4">
+            <label for="shipping_fee" class="block text-gray-700 font-medium">Shipping Fee</label>
+            <input type="number" name="shipping_fee" id="shipping_fee" min="0" step="1"
+                value="{{ old('shipping_fee', $info->shipping_fee ?? 0) }}"
+                class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-400"
+                placeholder="Enter shipping fee" required>
+        </div>
+
         {{-- Hero Section --}}
         <div>
             <label for="hero_title" class="block text-gray-700 font-medium">Hero Title</label>

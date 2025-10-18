@@ -112,7 +112,7 @@ body {
                 <div class="cart-summary">
                     <h5 class="fw-bold mb-3">Cart Summary</h5>
                     <p class="mb-1">Subtotal: <span id="subtotal" class="fw-bold">0 DT</span></p>
-                    <p class="mb-1">Shipping: <span id="shipping" class="fw-bold">5 DT</span></p>
+                    <p class="mb-1">Shipping: <span id="shipping" class="fw-bold">{{ $websiteInfo->shipping_fee}} {{ $websiteInfo->currency ?? 'DT'}}</span></p>
                     <hr>
                     <p class="mb-3">Total: <span id="total" class="fw-bold">0 DT</span></p>
                     @auth

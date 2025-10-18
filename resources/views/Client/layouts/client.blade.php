@@ -27,13 +27,13 @@
                     <p class="lead mb-4">{{ $websiteInfo->hero_description ?? 'Reliable gadgets for home, work, and play. Explore the latest in electronics with secure checkout and fast shipping.' }}</p>
                     <div class="d-flex justify-content-center gap-3 flex-wrap">
                         <span class="badge bg-white text-primary px-3 py-2 fs-6">
-                            <i class="bi bi-truck me-2"></i>Free Shipping
+                            <i class="bi bi-truck me-2"></i>{{ $websiteInfo->shipping_info ?? 'Free Shipping' }}
                         </span>
                         <span class="badge bg-white text-primary px-3 py-2 fs-6">
-                            <i class="bi bi-shield-check me-2"></i>Secure Payment
+                            <i class="bi bi-shield-check me-2"></i>{{ $websiteInfo->secure_payment_info ?? 'Secure Payment' }}
                         </span>
                         <span class="badge bg-white text-primary px-3 py-2 fs-6">
-                            <i class="bi bi-arrow-clockwise me-2"></i>Easy Returns
+                            <i class="bi bi-arrow-clockwise me-2"></i>{{ $websiteInfo->easy_returns_info ?? 'Easy Returns' }}
                         </span>
                     </div>
                 </div>
@@ -169,7 +169,7 @@
                                 
                                 <div class="mt-auto">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <span class="text-success fw-bold fs-4">{{ $product->price }} DT</span>
+                                        <span class="text-success fw-bold fs-4">{{ $product->price }} {{ $websiteInfo->currency ?? 'DT'}}</span>
                                         <span class="text-muted small">
                                             <i class="bi bi-box me-1"></i>{{ $product->stock }}
                                         </span>
