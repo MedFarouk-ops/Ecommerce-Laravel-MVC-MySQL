@@ -138,20 +138,26 @@
                 </thead>
                 <tbody class="text-gray-700">
 
-                    @foreach($orders as $order)
+                    @forelse($orders as $order)
                     <tr class="hover:bg-gray-200/30 transition">
                         <td class="px-6 py-3 border-b">{{ $order['id'] }}</td>
                         <td class="px-6 py-3 border-b">{{ $order['first_name'] }}</td>
                         <td class="px-6 py-3 border-b">{{ $order['total_amount'] }}</td>
                         <td class="px-6 py-3 border-b">
                             <span class="px-2 py-1 rounded-full text-xs font-semibold 
-                                {{ $order['status'] === 'Completed' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
+                                {{ $order['status'] === 'completed' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
                                 {{ $order['status'] }}
                             </span>
                         </td>
                         <td class="px-6 py-3 border-b">{{ $order['updated_at'] }}</td>
                     </tr>
-                    @endforeach
+                    @empty
+                    <tr>
+                        <td colspan="5" class="px-6 py-3 text-center text-gray-500">
+                            There are no order yet.
+                        </td>
+                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

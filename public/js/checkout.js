@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const placeOrderBtn = document.getElementById('placeOrderBtn');
     
     const SHIPPING_COST = WEBSITE_SHIPPING_FEE;
-    const FREE_SHIPPING_THRESHOLD = FREE_SHIPPING_THRESHOLD;
+    const FREE_SHIPPING_THRESHOLD = WEBSITE_FREE_SHIPPING_THRESHOLD;
 
     // --- Render Order Summary ---
     function renderOrderSummary() {
