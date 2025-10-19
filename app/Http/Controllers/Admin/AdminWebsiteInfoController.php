@@ -45,6 +45,8 @@ class AdminWebsiteInfoController extends Controller
             // Website shipping fee
             'shipping_fee' => 'required|integer|min:0',
             'free_shipping_threshhold' => 'required|integer|min:0',
+            // Website theme
+            'theme_fullname' => 'nullable|string|max:255',
             // Page titles and descriptions
             'about_us_title' => 'nullable|string|max:255',
             'about_us_description' => 'nullable|string',
@@ -70,6 +72,7 @@ class AdminWebsiteInfoController extends Controller
         $generalFields = [
             'name', 'hero_title', 'hero_description', 'about_description',
             'phone', 'email', 'address', 'facebook', 'twitter', 'instagram', 'linkedin','currency', 'shipping_fee','free_shipping_threshhold',
+            'theme_fullname',
             'shipping_info', 'secure_payment_info', 'easy_returns_info'
         ];
 

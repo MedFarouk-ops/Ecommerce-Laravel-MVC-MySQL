@@ -10,10 +10,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Existing CSS -->
-    <link href="{{ asset('css/client.css') }}" rel="stylesheet">
+       <!-- Custom theme CSS -->
+    @php
+        // get stored value or fallback
+        $themeFile = $websiteInfo->theme_fullname ?? 'client-base.css';
 
-    <!-- Checkout CSS -->
+        // normalize slashes and keep only the basename (filename)
+        $themeFile = str_replace('\\', '/', $themeFile);   // convert backslashes to forward
+        $themeFile = ltrim($themeFile, '/');               // remove leading slash if any
+        $themeFile = basename($themeFile);                 // keep only filename, e.g. client-theme-green.css
+    @endphp
+
+    <link href="{{ asset('css/client_themes/' . $themeFile) }}" rel="stylesheet">
     <link href="{{ asset('css/checkout.css') }}" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -167,21 +175,21 @@
                         <div class="order-calculations">
                             <div class="calc-row">
                                 <span>Subtotal:</span>
-                                <span id="orderSubtotal">0 DT</span>
+                                <span id="orderSubtotal">0  {{ $websiteInfo->currency ?? 'DT'}}</span>
                             </div>
                             <div class="calc-row">
                                 <span>Shipping:</span>
-                                <span id="orderShipping">7 DT</span>
+                                <span id="orderShipping">7  {{ $websiteInfo->currency ?? 'DT'}}</span>
                             </div>
                             <div class="calc-row total-row">
                                 <span>Total:</span>
-                                <span id="orderTotal">0 DT</span>
+                                <span id="orderTotal">0  {{ $websiteInfo->currency ?? 'DT'}}</span>
                             </div>
                         </div>
 
                         <div class="alert alert-info alert-sm mb-3">
                             <i class="bi bi-info-circle me-2"></i>
-                            <small>Free shipping on orders over 200 DT</small>
+                            <small>Free shipping on orders over   {{ $websiteInfo->free_shipping_threshhold}} {{ $websiteInfo->currency ?? 'DT'}} </small>
                         </div>
 
                         <button type="submit" form="checkoutForm" class="btn btn-place-order w-100" id="placeOrderBtn">
@@ -191,15 +199,15 @@
                         <div class="security-badges mt-3">
                             <div class="security-item">
                                 <i class="bi bi-shield-check"></i>
-                                <small>Secure Checkout</small>
+                                <small> {{ $websiteInfo->secure_payment_info ?? 'Free Shipping'}}</small>
                             </div>
                             <div class="security-item">
                                 <i class="bi bi-truck"></i>
-                                <small>Fast Delivery</small>
+                                <small>{{ $websiteInfo->shipping_info ?? 'Fast Delivery'}}</small>
                             </div>
                             <div class="security-item">
                                 <i class="bi bi-arrow-return-left"></i>
-                                <small>Easy Returns</small>
+                                <small>{{ $websiteInfo->easy_returns_info ?? 'Easy Returns'}}</small>
                             </div>
                         </div>
                     </div>

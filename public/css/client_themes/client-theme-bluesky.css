@@ -1,0 +1,1129 @@
+/* ====================================
+   BLUE SKY THEME - Complete Coverage
+   ==================================== */
+
+/* Color Variables */
+:root {
+    --primary-color: #339af0;
+    --primary-light: #74c0fc;
+    --primary-lighter: #a5d8ff;
+    --primary-lightest: #e7f5ff;
+    --secondary-color: #1c7ed6;
+    --background-color: #f0f9ff;
+    --white: #ffffff;
+    --success: #51cf66;
+    --danger: #ff6b6b;
+    --warning: #ffd43b;
+    --info: #22b8cf;
+    --text-primary: #1e293b;
+    --text-muted: #64748b;
+    --border-color: #bae6fd;
+}
+
+/* ====================================
+   BASE STYLES
+   ==================================== */
+body {
+    background-color: var(--background-color);
+    color: var(--text-primary);
+}
+
+/* ====================================
+   HERO SECTION
+   ==================================== */
+.hero {
+    background: linear-gradient(135deg, #4dabf7, #339af0, #1c7ed6);
+    color: var(--white);
+}
+
+.hero h1, .hero h2, .hero h3, .hero h4, .hero h5, .hero h6,
+.hero p, .hero .lead {
+    color: var(--white) !important;
+}
+
+.hero .badge {
+    background-color: var(--white) !important;
+    color: var(--primary-color) !important;
+}
+
+/* ====================================
+   NAVBAR
+   ==================================== */
+.navbar {
+    background-color: var(--white);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.navbar-brand {
+    color: var(--primary-color) !important;
+    font-weight: bold;
+}
+
+.navbar .nav-link {
+    color: var(--text-primary) !important;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: var(--primary-color) !important;
+}
+
+.navbar .nav-link.active {
+    color: var(--primary-color) !important;
+}
+
+/* Navbar icons */
+.navbar .bi {
+    color: var(--text-primary);
+}
+
+.navbar .nav-link:hover .bi {
+    color: var(--primary-color);
+}
+
+/* Cart badge */
+.navbar .badge {
+    background-color: var(--primary-color) !important;
+    color: var(--white) !important;
+}
+
+/* ====================================
+   SIDEBAR
+   ==================================== */
+.sidebar {
+    background-color: var(--white);
+    border-right: 1px solid var(--border-color);
+}
+
+.sidebar h5, .sidebar h6 {
+    color: var(--text-primary);
+}
+
+.sidebar .nav .btn,
+.sidebar .list-group-item {
+    background-color: var(--primary-lightest);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.sidebar .nav .btn:hover,
+.sidebar .nav .btn.active,
+.sidebar .list-group-item:hover,
+.sidebar .list-group-item.active {
+    background-color: var(--primary-color) !important;
+    color: var(--white) !important;
+    border-color: var(--primary-color) !important;
+}
+
+/* ====================================
+   BUTTONS - ALL TYPES
+   ==================================== */
+
+/* Primary Buttons */
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--white) !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color) !important;
+    color: var(--white) !important;
+}
+
+/* Outline Primary Buttons */
+.btn-outline-primary {
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    background-color: transparent;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active,
+.add-to-cart-btn:hover {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--white) !important;
+}
+
+/* Secondary Buttons */
+.btn-secondary {
+    background-color: var(--text-primary) !important;
+    border-color: var(--text-primary) !important;
+    color: var(--white) !important;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active {
+    background-color: #334155 !important;
+    border-color: #334155 !important;
+}
+
+/* Outline Secondary Buttons */
+.btn-outline-secondary {
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-secondary:focus,
+.btn-outline-secondary:active {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--white) !important;
+}
+
+/* Success Buttons */
+.btn-success {
+    background-color: var(--success) !important;
+    border-color: var(--success) !important;
+    color: var(--white) !important;
+}
+
+/* Danger Buttons */
+.btn-danger {
+    background-color: var(--danger) !important;
+    border-color: var(--danger) !important;
+    color: var(--white) !important;
+}
+
+/* ====================================
+   BADGES
+   ==================================== */
+.badge {
+    font-weight: 500;
+}
+
+.badge.bg-success {
+    background-color: var(--success) !important;
+    color: var(--white) !important;
+}
+
+.badge.bg-danger {
+    background-color: var(--danger) !important;
+    color: var(--white) !important;
+}
+
+.badge.bg-warning {
+    background-color: var(--warning) !important;
+    color: var(--text-primary) !important;
+}
+
+.badge.bg-info {
+    background-color: var(--info) !important;
+    color: var(--white) !important;
+}
+
+.badge.bg-primary {
+    background-color: var(--primary-color) !important;
+    color: var(--white) !important;
+}
+
+/* ====================================
+   PRODUCT CARDS
+   ==================================== */
+.product-card .glass-card {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--border-color) !important;
+    transition: all 0.3s ease;
+}
+
+.product-card .glass-card:hover {
+    box-shadow: 0 8px 20px rgba(51, 154, 240, 0.25);
+    transform: translateY(-5px);
+}
+
+.product-card .card-title {
+    color: var(--text-primary);
+}
+
+.product-card .text-success {
+    color: var(--success) !important;
+}
+
+.product-card .text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* Product image wrapper */
+.product-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.product-image {
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+/* ====================================
+   FORMS & INPUTS
+   ==================================== */
+.form-control {
+    border-color: var(--border-color);
+    background-color: var(--white);
+    color: var(--text-primary);
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(51, 154, 240, 0.25);
+    background-color: var(--white);
+    color: var(--text-primary);
+}
+
+.form-control::placeholder {
+    color: var(--text-muted);
+}
+
+.input-group-text {
+    background-color: var(--white);
+    border-color: var(--border-color);
+    color: var(--text-muted);
+}
+
+.form-select {
+    border-color: var(--border-color);
+    background-color: var(--white);
+    color: var(--text-primary);
+}
+
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(51, 154, 240, 0.25);
+}
+
+/* ====================================
+   LINKS
+   ==================================== */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover,
+a:focus {
+    color: var(--secondary-color);
+}
+
+/* ====================================
+   DROPDOWNS
+   ==================================== */
+.dropdown-menu {
+    border-color: var(--border-color);
+    background-color: var(--white);
+}
+
+.dropdown-item {
+    color: var(--text-primary);
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: var(--primary-lightest);
+    color: var(--primary-color);
+}
+
+.dropdown-item.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+/* ====================================
+   CAROUSEL
+   ==================================== */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(51, 154, 240, 0.5);
+    border-radius: 50%;
+    padding: 20px;
+}
+
+.carousel-indicators button {
+    background-color: var(--primary-color);
+}
+
+/* ====================================
+   PROMOTIONS BANNER
+   ==================================== */
+.promotions-banner {
+    background-color: var(--white);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.promotion-image {
+    max-height: 300px;
+    width: auto;
+    margin: 0 auto;
+}
+/* ====================================
+   FOOTER
+   ==================================== */
+footer {
+    background-color: var(--secondary-color) !important;
+    color: var(--black) !important;
+}
+
+footer h1, footer h2, footer h3, footer h4, footer h5, footer h6 {
+    color: var(--black) !important;
+}
+
+footer p, footer span, footer div {
+    color: var(--black) !important;
+}
+
+footer .fw-bold {
+    color: var(--black) !important;
+}
+
+footer a {
+    color: var(--primary-light) !important;
+}
+
+footer a:hover {
+    color: var(--black) !important;
+}
+
+footer .text-muted {
+    color: var(--black) !important;
+}
+
+footer .small {
+    color:  var(--black) !important;
+}
+/* ====================================
+   PAGINATION
+   ==================================== */
+.pagination .page-link {
+    color: var(--primary-color);
+    border-color: var(--border-color);
+    background-color: var(--white);
+}
+
+.pagination .page-link:hover {
+    color: var(--white);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--white);
+}
+
+.pagination .page-item.disabled .page-link {
+    color: var(--text-muted);
+    background-color: var(--primary-lightest);
+    border-color: var(--border-color);
+}
+
+/* ====================================
+   ALERTS
+   ==================================== */
+.alert-primary {
+    background-color: var(--primary-lightest);
+    border-color: var(--primary-lighter);
+    color: var(--secondary-color);
+}
+
+.alert-success {
+    background-color: #d3f9d8;
+    border-color: var(--success);
+    color: #2b8a3e;
+}
+
+.alert-danger {
+    background-color: #ffe3e3;
+    border-color: var(--danger);
+    color: #c92a2a;
+}
+
+.alert-info {
+    background-color: #d0ebff;
+    border-color: var(--info);
+    color: #0c8599;
+}
+
+/* ====================================
+   MOBILE FILTER BUTTON
+   ==================================== */
+#sidebarToggle {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--white) !important;
+    box-shadow: 0 4px 12px rgba(51, 154, 240, 0.4);
+}
+
+#sidebarToggle:hover {
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color) !important;
+}
+
+/* ====================================
+   TEXT UTILITIES
+   ==================================== */
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.text-success {
+    color: var(--success) !important;
+}
+
+.text-danger {
+    color: var(--danger) !important;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* ====================================
+   CARDS
+   ==================================== */
+.card {
+    border-color: var(--border-color);
+    background-color: var(--white);
+}
+
+.card-header {
+    background-color: var(--primary-lightest);
+    border-bottom-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+/* ====================================
+   TABLES
+   ==================================== */
+.table {
+    color: var(--text-primary);
+}
+
+.table thead th {
+    border-bottom-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: var(--primary-lightest);
+}
+
+.table-hover > tbody > tr:hover {
+    background-color: rgba(51, 154, 240, 0.1);
+}
+
+/* ====================================
+   MODALS
+   ==================================== */
+.modal-content {
+    border-color: var(--border-color);
+}
+
+.modal-header {
+    border-bottom-color: var(--border-color);
+    background-color: var(--primary-lightest);
+}
+
+.modal-footer {
+    border-top-color: var(--border-color);
+}
+
+/* ====================================
+   SCROLLBAR (Webkit browsers)
+   ==================================== */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--primary-lightest);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-lighter);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+/* ====================================
+   LOADING STATES
+   ==================================== */
+.spinner-border {
+    color: var(--primary-color);
+}
+
+.spinner-grow {
+    color: var(--primary-color);
+}
+
+/* ====================================
+   FOCUS STATES (Accessibility)
+   ==================================== */
+*:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* ====================================
+   RESPONSIVE ADJUSTMENTS
+   ==================================== */
+@media (max-width: 768px) {
+    .sidebar {
+        background-color: var(--white);
+        box-shadow: 0 4px 12px rgba(51, 154, 240, 0.2);
+    }
+}
+
+/* ====================================
+   ANIMATIONS
+   ==================================== */
+@keyframes pulse-primary {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.loading-pulse {
+    animation: pulse-primary 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ====================================
+   ADDITIONAL SKY THEME ELEMENTS
+   ==================================== */
+
+/* Subtle cloud-like patterns for cards */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-lighter), transparent);
+    opacity: 0.5;
+}
+
+/* Enhanced button shadow for depth */
+.btn-primary,
+.btn-outline-primary:hover {
+    box-shadow: 0 2px 8px rgba(51, 154, 240, 0.3);
+}
+
+/* Soft glow effect on focus */
+.form-control:focus,
+.form-select:focus {
+    background-color: rgba(231, 245, 255, 0.3);
+}
+
+/* Sky-inspired gradient for special sections */
+.special-section {
+    background: linear-gradient(180deg, #e7f5ff 0%, #ffffff 100%);
+}
+/* ===================================
+   Product Page Styles - Professional Design
+   =================================== */
+
+:root {
+    --primary-color: #0066cc;
+    --primary-dark: #0052a3;
+    --secondary-color: #6c757d;
+    --accent-color: #ff6b35;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --text-dark: #2c3e50;
+    --text-muted: #6c757d;
+    --border-light: #e9ecef;
+    --bg-light: #f8f9fa;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-dark);
+    background: linear-gradient(135deg, #f5f7fa 0%, #e3e7f1 100%);
+}
+
+/* Breadcrumb Styling */
+.breadcrumb {
+    padding: 0.75rem 0;
+    margin-bottom: 0;
+}
+
+.breadcrumb-item a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-item a:hover {
+    color: var(--primary-dark);
+}
+
+/* ===================================
+   Product Container
+   =================================== */
+.product-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===================================
+   Product Gallery (Left Side)
+   =================================== */
+.product-gallery {
+    background: var(--bg-light);
+    padding: 3rem 2.5rem;
+    position: relative;
+}
+
+.gallery-wrapper {
+    position: relative;
+}
+
+/* Stock Badge */
+.stock-badge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    padding: 0.5rem 1rem;
+    border-radius: 0 0 15px 0;
+    font-weight: 600;
+    font-size: 0.875rem;
+    backdrop-filter: blur(10px);
+}
+
+.stock-badge.in-stock {
+    background: rgba(40, 167, 69, 0.9);
+    color: white;
+}
+
+.stock-badge.out-stock {
+    background: rgba(220, 53, 69, 0.9);
+    color: white;
+}
+
+/* Main Image */
+.main-image-wrapper {
+    border-radius: 15px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.main-image {
+    width: 100%;
+    height: 500px;
+    object-fit: contain;
+    padding: 2rem;
+    transition: transform 0.4s ease;
+}
+
+.main-image:hover {
+    transform: scale(1.05);
+}
+
+.placeholder-image {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+}
+
+.placeholder-image i {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    opacity: 0.3;
+}
+
+/* Carousel Controls */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.main-image-wrapper:hover .carousel-control-prev,
+.main-image-wrapper:hover .carousel-control-next {
+    opacity: 1;
+}
+
+.carousel-control-prev {
+    left: 10px;
+}
+
+.carousel-control-next {
+    right: 10px;
+}
+
+/* Thumbnails */
+.product-thumbnails {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.thumb-wrapper {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.thumb-wrapper:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 102, 204, 0.3);
+}
+
+.thumb-wrapper.active {
+    border-color: var(--primary-color);
+    box-shadow: 0 5px 15px rgba(0, 102, 204, 0.4);
+}
+
+.thumb-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 0.5rem;
+}
+
+/* ===================================
+   Product Details (Right Side)
+   =================================== */
+.product-details {
+    padding: 3rem 2.5rem;
+}
+
+.details-content {
+    max-width: 600px;
+}
+
+/* Product Title */
+.product-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+/* Rating */
+.product-rating {
+    display: flex;
+    align-items: center;
+}
+
+.product-rating i {
+    font-size: 1rem;
+}
+
+/* Price Section */
+.price-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.current-price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.original-price {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    text-decoration: line-through;
+}
+
+/* Stock Info */
+.stock-info {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: var(--bg-light);
+    border-radius: 10px;
+    font-size: 0.95rem;
+}
+
+.stock-label {
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+.stock-value {
+    font-weight: 600;
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+/* Description */
+.product-description p {
+    color: var(--secondary-color);
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+/* Features List */
+.features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.features-list li {
+    padding: 0.5rem 0;
+    color: var(--secondary-color);
+    font-size: 0.95rem;
+}
+
+/* Quantity Section */
+.quantity-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.quantity-label {
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--border-light);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.qty-btn {
+    width: 45px;
+    height: 45px;
+    border: none;
+    background: var(--bg-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--text-dark);
+}
+
+.qty-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.qty-input {
+    width: 70px;
+    height: 45px;
+    border: none;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+    background: white;
+}
+
+.qty-input:focus {
+    outline: none;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.btn-add-cart,
+.btn-buy-now {
+    flex: 1;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-add-cart {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-add-cart:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 102, 204, 0.4);
+}
+
+.btn-buy-now {
+    background: var(--accent-color);
+    color: white;
+}
+
+.btn-buy-now:hover {
+    background: #e55a2b;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 107, 53, 0.4);
+}
+
+.btn-add-cart:disabled,
+.btn-buy-now:disabled {
+    background: var(--text-muted);
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Additional Info */
+.additional-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-light);
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.info-item i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-top: 0.25rem;
+}
+
+.info-item strong {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    margin-bottom: 0.25rem;
+}
+
+.info-item p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Toast Notification */
+#cartToast .toast-body {
+    font-size: 0.95rem;
+}
+
+/* ===================================
+   Responsive Design
+   =================================== */
+@media (max-width: 991px) {
+    .product-gallery,
+    .product-details {
+        padding: 2rem 1.5rem;
+    }
+
+    .main-image {
+        height: 400px;
+    }
+
+    .product-title {
+        font-size: 1.75rem;
+    }
+
+    .current-price {
+        font-size: 2rem;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .additional-info {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 575px) {
+    .product-gallery,
+    .product-details {
+        padding: 1.5rem 1rem;
+    }
+
+    .main-image {
+        height: 300px;
+        padding: 1rem;
+    }
+
+    .product-title {
+        font-size: 1.5rem;
+    }
+}

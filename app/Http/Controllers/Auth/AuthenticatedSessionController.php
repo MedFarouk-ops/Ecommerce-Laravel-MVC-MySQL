@@ -16,7 +16,8 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        return view('auth.login');
+        $websiteInfo = \App\Models\WebsiteInfo::first();
+        return view('auth.login',compact('websiteInfo'));
     }
 
     /**

@@ -6,8 +6,18 @@
     <title>@yield('title')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="{{ asset('css/client.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+     <!-- Custom theme CSS -->
+    @php
+        // get stored value or fallback
+        $themeFile = $websiteInfo->theme_fullname ?? 'client-base.css';
+
+        // normalize slashes and keep only the basename (filename)
+        $themeFile = str_replace('\\', '/', $themeFile);   // convert backslashes to forward
+        $themeFile = ltrim($themeFile, '/');               // remove leading slash if any
+        $themeFile = basename($themeFile);                 // keep only filename, e.g. client-theme-green.css
+    @endphp
+
+    <link href="{{ asset('css/client_themes/' . $themeFile) }}" rel="stylesheet">
 </head>
 <body class="d-flex flex-column min-vh-100">
     @include('Client.components.navbar')

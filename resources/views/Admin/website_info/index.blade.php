@@ -256,6 +256,37 @@
             </div>
         @endforeach
 
+        {{-- Theme Selection --}}
+        <hr class="my-6 border-gray-300">
+
+        <h4 class="text-lg font-semibold text-gray-800 mb-3">Select Website Theme</h4>
+
+        <div class="flex flex-wrap gap-4">
+            @php
+                $themes = [
+                    ['name' => 'Basic', 'file' => 'client-theme-basic.css', 'color' => '#e5e7eb'], // gray/white
+                    ['name' => 'Sky Blue', 'file' => 'client-theme-bluesky.css', 'color' => '#87ceeb'],
+                    ['name' => 'Green', 'file' => 'client-theme-green.css', 'color' => '#28a745'],
+                    ['name' => 'Pink', 'file' => 'client-theme-pink.css', 'color' => '#ff69b4'],
+                    ['name' => 'Yellow', 'file' => 'client-theme-yellow.css', 'color' => '#F2F527'],
+                ];
+                $selectedTheme = old('theme_fullname', $info->theme_fullname ?? '');
+            @endphp
+
+            @foreach ($themes as $theme)
+                <label class="cursor-pointer">
+                    <input type="radio" name="theme_fullname" value="{{ $theme['file'] }}"
+                        class="hidden peer"
+                        {{ $selectedTheme === $theme['file'] ? 'checked' : '' }}>
+                    <div class="w-24 h-20 rounded-lg border-2 border-gray-300 peer-checked:border-blue-500 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition">
+                        <div class="w-10 h-10 rounded-md mb-2" style="background-color: {{ $theme['color'] }}"></div>
+                        <span class="text-sm font-medium text-gray-700">{{ $theme['name'] }}</span>
+                    </div>
+                </label>
+            @endforeach
+        </div>
+
+
         {{-- Submit --}}
         <div class="flex justify-end gap-3 mt-6">
             <a href="{{ route('admin.dashboard') }}"

@@ -41,5 +41,8 @@ class WebsiteInfo extends Model
         'currency',
         'shipping_fee',
         'free_shipping_threshhold',
+
+        // website theme
+        'theme_fullname',
     ];
 }
