@@ -14,31 +14,47 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <!-- Bootstrap Icons -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-        <!-- Custom CSS -->
-        <link href="{{ asset('css/client.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <!-- Custom theme CSS -->
+        @php
+            // get stored value or fallback
+            $themeFile = $websiteInfo->theme_fullname ?? 'client-base.css';
+
+            // normalize slashes and keep only the basename (filename)
+            $themeFile = str_replace('\\', '/', $themeFile);   // convert backslashes to forward
+            $themeFile = ltrim($themeFile, '/');               // remove leading slash if any
+            $themeFile = basename($themeFile);                 // keep only filename, e.g. client-theme-green.css
+        @endphp
+
+        <link href="{{ asset('css/client_themes/' . $themeFile) }}" rel="stylesheet">
+    
     </head>
-    <body class="font-sans text-gray-900 antialiased">
-        
+    <body class="font-sans antialiased bg-gradient-to-br from-pink-50 via-pink-100 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 min-h-screen flex flex-col">
+
+        <!-- Navbar -->
         @include('Client.components.navbar')
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
-            <div>
+
+        <!-- Main Content Wrapper -->
+        <div class="flex flex-col sm:justify-center items-center flex-1 w-full pt-6 sm:pt-12 px-4">
+            <!-- Logo -->
+            <div class="mb-6">
                 <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                    <x-application-logo class="w-24 h-24 fill-current text-pink-400 dark:text-pink-500 transition-transform transform hover:scale-110" />
                 </a>
             </div>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+            <!-- Slot Card -->
+            <div class="w-full sm:max-w-md bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-8 sm:p-10 transition-transform transform hover:scale-105 border border-pink-100 dark:border-gray-700">
                 {{ $slot }}
             </div>
         </div>
-        <!-- Enhanced Footer -->
+
+        <!-- Footer -->
         @include('Client.components.footer')
-         <!-- Bootstrap JS -->
+
+        <!-- JS Scripts -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="{{ asset('js/client.js') }}"></script>
         <script src="{{ asset('js/cart.js') }}"></script>
     </body>
+
 </html>

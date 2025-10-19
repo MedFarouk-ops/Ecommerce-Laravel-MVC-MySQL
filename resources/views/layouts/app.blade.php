@@ -13,8 +13,18 @@
          <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet">
-        <!-- Custom CSS -->
-        <link href="{{ asset('css/client.css') }}" rel="stylesheet">
+        <!-- Custom theme CSS -->
+        @php
+            // get stored value or fallback
+            $themeFile = $websiteInfo->theme_fullname ?? 'client-base.css';
+
+            // normalize slashes and keep only the basename (filename)
+            $themeFile = str_replace('\\', '/', $themeFile);   // convert backslashes to forward
+            $themeFile = ltrim($themeFile, '/');               // remove leading slash if any
+            $themeFile = basename($themeFile);                 // keep only filename, e.g. client-theme-green.css
+        @endphp
+
+        <link href="{{ asset('css/client_themes/' . $themeFile) }}" rel="stylesheet">
         
     </head>
     <body class="font-sans antialiased">
