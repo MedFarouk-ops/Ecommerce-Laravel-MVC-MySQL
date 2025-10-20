@@ -154,7 +154,7 @@
                                         <strong>Credit/Debit Card</strong>
                                         <small>Secure payment via card</small>
                                     </div>
-                                    <span class="badge bg-warning text-dark">Coming Soon</span>
+                                    <span class="badge bg-warning text-dark">Not supported yet</span>
                                 </label>
                             </div>
                         </div>
@@ -220,7 +220,7 @@
     @include('Client.components.footer')
     <script>
         const WEBSITE_SHIPPING_FEE = {{ $websiteInfo->shipping_fee ?? 7 }};
-        const WEBSITE_FREE_SHIPPING_THRESHOLD = {{ $websiteInfo->free_shipping_threshold ?? 300 }};
+        const WEBSITE_FREE_SHIPPING_THRESHOLD = {{ $websiteInfo->free_shipping_threshhold ?? 300 }};
         const WEBSITE_CURRENCY = "{{ $websiteInfo->currency ?? 'DT' }}";
     </script>
 

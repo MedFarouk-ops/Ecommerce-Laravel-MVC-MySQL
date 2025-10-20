@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const SHIPPING_COST = WEBSITE_SHIPPING_FEE;
     const FREE_SHIPPING_THRESHOLD = WEBSITE_FREE_SHIPPING_THRESHOLD;
 
+    console.log(FREE_SHIPPING_THRESHOLD)
     // --- Render Order Summary ---
     function renderOrderSummary() {
         if (cart.length === 0) {
@@ -257,5 +258,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Remove from DOM when hidden
         toastEl.addEventListener('hidden.bs.toast', () => toastEl.remove());
     }
+    renderOrderSummary();
 });
 
