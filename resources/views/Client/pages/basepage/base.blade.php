@@ -1,4 +1,19 @@
 <!DOCTYPE html>
+<!--
+    ------------------------------------------------------------------------------
+    © 2025 Mohamed Farouk Khabir. All rights reserved.
+
+    This template is licensed for **single-use only**. 
+    The buyer is permitted to make **only one live version** of this template on the internet.
+
+    Prohibited:
+    - Reselling, redistributing, or sharing this template.
+    - Making multiple live versions or using it for multiple projects.
+
+    Unauthorized redistribution may result in legal action. 
+    By using this template, you agree to comply with the license terms.
+    ------------------------------------------------------------------------------
+-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
