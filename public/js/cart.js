@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalEl = document.getElementById('total');
     const shippingEl = document.getElementById('shipping');
 
+    const freeShippingThreshold = parseFloat(WEBSITE_FREE_SHIPPING_THRESHOLD) || 0;
+
     // --- Get shipping fee and currency safely ---
     let shippingFee = 0;
     let currency = 'DT';
@@ -46,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cart.length === 0) {
             tbody.innerHTML = `<tr><td colspan="6" class="text-center text-muted">Your cart is empty</td></tr>`;
             if (subtotalEl) subtotalEl.textContent = '0 ' + currency;
+            if (shippingEl) shippingEl.textContent = '0 ' + currency;
             if (totalEl) totalEl.textContent = '0 ' + currency;
             return;
         }
@@ -86,11 +89,27 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         });
 
+        // Update subtotal
         if (subtotalEl) subtotalEl.textContent = subtotal.toFixed(2) + ' ' + currency;
-        if (totalEl) totalEl.textContent = (subtotal + shippingFee).toFixed(2) + ' ' + currency;
-    
+
+        // Determine shipping
+        let currentShippingFee = shippingFee;
+        let shippingMessage = '';
+        if (subtotal >= freeShippingThreshold) {
+            currentShippingFee = 0;
+            shippingMessage = `You got free shipping! 🎉`;
+        } else {
+            shippingMessage = `Add ${ (freeShippingThreshold - subtotal).toFixed(2) } ${currency} more for free shipping`;
+        }
+
+        if (shippingEl) shippingEl.textContent = currentShippingFee.toFixed(2) + ' ' + currency + ' - ' + shippingMessage;
+
+        // Update total
+        if (totalEl) totalEl.textContent = (subtotal + currentShippingFee).toFixed(2) + ' ' + currency;
+
         attachCartPageEvents();
     }
+
 
     // --- Cart Page Event Handlers ---
     function attachCartPageEvents() {

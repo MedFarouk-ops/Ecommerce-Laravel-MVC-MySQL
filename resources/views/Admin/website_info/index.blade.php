@@ -269,6 +269,8 @@
                     ['name' => 'Green', 'file' => 'client-theme-green.css', 'color' => '#28a745'],
                     ['name' => 'Pink', 'file' => 'client-theme-pink.css', 'color' => '#ff69b4'],
                     ['name' => 'Yellow', 'file' => 'client-theme-yellow.css', 'color' => '#F2F527'],
+                    ['name' => 'Gray-Red', 'file' => 'client-theme-redgray.css', 'color' => '#FF2800'],
+                    ['name' => 'Gray-Brown', 'file' => 'client-theme-browngray.css', 'color' => '#4D2C2A'],
                 ];
                 $selectedTheme = old('theme_fullname', $info->theme_fullname ?? '');
             @endphp

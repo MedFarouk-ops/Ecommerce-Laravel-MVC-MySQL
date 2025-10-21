@@ -220,7 +220,7 @@
     @include('Client.components.footer')
     <script>
         const WEBSITE_SHIPPING_FEE = {{ $websiteInfo->shipping_fee ?? 7 }};
-        const WEBSITE_FREE_SHIPPING_THRESHOLD = {{ $websiteInfo->free_shipping_threshhold ?? 300 }};
+        const WEBSITE_FREE_SHIPPING_THRESHOLD = {{ $websiteInfo->free_shipping_threshhold ?? 0 }};
         const WEBSITE_CURRENCY = "{{ $websiteInfo->currency ?? 'DT' }}";
     </script>
 
