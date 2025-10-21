@@ -53,7 +53,7 @@
                 </tr>
             </thead>
             <tbody class="text-gray-700">
-                @foreach($products as $product)
+                @forelse($products as $product)
                 <tr class="hover:bg-gray-200/30 transition">
                     <td class="px-4 py-2 border-b">{{ $product->id }}</td>
                     <td class="px-4 py-2 border-b">
@@ -81,7 +81,11 @@
                         </button>
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                <tr>
+                    <td colspan="6" class="text-center text-gray-500 py-4">No product found.</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
