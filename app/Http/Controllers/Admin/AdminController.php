@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Models\WebsiteInfo;
 
 class AdminController extends Controller
 {
@@ -58,6 +59,7 @@ class AdminController extends Controller
 
         // Top selling products
         $topSelling = $this->getTopSellingProducts();
+        $websiteInfo = WebsiteInfo::first(); // Get the first (and only) website info record
 
         return view('Admin.dashboard', [
             'orders'           => $orders,
@@ -82,6 +84,7 @@ class AdminController extends Controller
             'growthThisMonthVsLastMonth' => $growthThisMonthVsLastMonth,
             'outOfStock' => $outOfStock,
             'lowStock'   => $lowStock,
+            'websiteInfo' => $websiteInfo,
         ]);
     }
 
