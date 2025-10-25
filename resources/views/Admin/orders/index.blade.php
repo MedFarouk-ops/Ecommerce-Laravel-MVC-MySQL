@@ -42,7 +42,7 @@
                     <th class="px-6 py-3 border-b">#</th>
                     <th class="px-6 py-3 border-b">Customer</th>
                     <th class="px-6 py-3 border-b">Products</th>
-                    <th class="px-6 py-3 border-b">Total (DT)</th>
+                    <th class="px-6 py-3 border-b">Total ({{$websiteInfo->currency ?? DT}})</th>
                     <th class="px-6 py-3 border-b">Status</th>
                     <th class="px-6 py-3 border-b">Date</th>
                     <th class="px-6 py-3 border-b text-center">Actions</th>

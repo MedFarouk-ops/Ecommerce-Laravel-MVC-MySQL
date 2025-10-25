@@ -264,7 +264,7 @@
         <div class="flex flex-wrap gap-4">
             @php
                 $themes = [
-                    ['name' => 'Basic', 'file' => 'client-theme-basic.css', 'color' => '#e5e7eb'], // gray/white
+                    ['name' => 'Basic', 'file' => 'client-base.css', 'color' => '#e5e7eb'], // gray/white
                     ['name' => 'Sky Blue', 'file' => 'client-theme-bluesky.css', 'color' => '#87ceeb'],
                     ['name' => 'Green', 'file' => 'client-theme-green.css', 'color' => '#28a745'],
                     ['name' => 'Pink', 'file' => 'client-theme-pink.css', 'color' => '#ff69b4'],

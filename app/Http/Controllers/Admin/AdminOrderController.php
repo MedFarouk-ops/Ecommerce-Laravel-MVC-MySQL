@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Models\WebsiteInfo;
 
 class AdminOrderController extends Controller
 {
@@ -17,8 +18,9 @@ class AdminOrderController extends Controller
         $orders = \App\Models\Order::with(['user', 'items.product'])
             ->orderBy('updated_at', 'desc') // <-- use orderBy instead of latest()
             ->paginate(10); // you can use ->get() if you don’t need pagination
-
-        return view('Admin.orders.index', compact('orders'));
+        $websiteInfo = WebsiteInfo::first(); // Get the first (and only) website info record
+        
+        return view('Admin.orders.index', compact('orders','websiteInfo'));
     }
 
     /**
@@ -27,7 +29,8 @@ class AdminOrderController extends Controller
     public function show(string $id)
     {
         $order = Order::with(['items.product', 'user'])->findOrFail($id);
-        return view('admin.orders.show', compact('order'));
+        $websiteInfo = WebsiteInfo::first(); // Get the first (and only) website info record
+        return view('admin.orders.show', compact('order','websiteInfo'));
     }
 
     /**
@@ -36,7 +39,8 @@ class AdminOrderController extends Controller
     public function edit(string $id)
     {
         $order = Order::findOrFail($id);
-        return view('admin.orders.edit', compact('order'));
+        $websiteInfo = WebsiteInfo::first(); // Get the first (and only) website info record
+        return view('admin.orders.edit', compact('order','websiteInfo'));
     }
 
     /**

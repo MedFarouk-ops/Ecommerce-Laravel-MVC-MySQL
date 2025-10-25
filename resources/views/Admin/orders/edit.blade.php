@@ -75,7 +75,7 @@
 
         <div class="text-right">
             <span class="font-semibold text-lg">Total: </span>
-            <span class="text-lg">{{ number_format($order->total_amount, 2) }} DT</span>
+            <span class="text-lg">{{ number_format($order->total_amount, 2) }} ({{$websiteInfo->currency ?? DT}})</span>
         </div>
     </div>
 

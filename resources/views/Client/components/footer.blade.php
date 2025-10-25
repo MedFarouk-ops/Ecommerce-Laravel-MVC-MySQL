@@ -76,3 +76,9 @@ window.addEventListener('load', () => {
     setTimeout(() => loader.style.display = 'none', 500);
 });
 </script>
+
+<script>
+        const WEBSITE_SHIPPING_FEE = {{ $websiteInfo->shipping_fee ?? 7 }};
+        const WEBSITE_FREE_SHIPPING_THRESHOLD = {{ $websiteInfo->free_shipping_threshhold ?? 0 }};
+        const WEBSITE_CURRENCY = "{{ $websiteInfo->currency ?? 'DT' }}";
+</script>
