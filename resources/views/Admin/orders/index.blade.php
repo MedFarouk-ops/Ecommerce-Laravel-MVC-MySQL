@@ -76,9 +76,9 @@
                     </td>
 
                     <td class="px-6 py-3 border-b">
-                        @foreach($order->items as $item)
+                        @forelse($order->items as $item)
                             {{ $item->product->name ?? 'N/A' }} (x{{ $item->quantity }})@if(!$loop->last),@endif
-                          @empty
+                        @empty
                         <tr>
                             <td colspan="6" class="text-center text-gray-500 py-4">No order found.</td>
                         </tr>
