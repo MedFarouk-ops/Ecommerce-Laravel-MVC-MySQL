@@ -22,6 +22,10 @@
     <title>@yield('title', ($websiteInfo->name ?? '')) - Cart</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    @if (!empty($websiteInfo->logo))
+        <link rel="icon" type="image/png" href="{{ asset('storage/' . $websiteInfo->logo) }}?v={{ time() }}">
+    @endif
     <!-- Custom theme CSS -->
     @php
         // get stored value or fallback
@@ -85,11 +89,7 @@
         <!-- Footer -->
     @include('Client.components.footer')
     
-    <script>
-        const WEBSITE_SHIPPING_FEE = {{ $websiteInfo->shipping_fee ?? 7 }};
-        const WEBSITE_FREE_SHIPPING_THRESHOLD = {{ $websiteInfo->free_shipping_threshhold ?? 0 }};
-        const WEBSITE_CURRENCY = "{{ $websiteInfo->currency ?? 'DT' }}";
-    </script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('js/client.js') }}"></script>

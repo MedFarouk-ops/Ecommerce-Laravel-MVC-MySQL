@@ -20,7 +20,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>Login</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -29,6 +29,10 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <!-- Bootstrap Icons -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        @if (!empty($websiteInfo->logo))
+            <link rel="icon" type="image/png" href="{{ asset('storage/' . $websiteInfo->logo) }}?v={{ time() }}">
+        @endif
         <!-- Custom theme CSS -->
         @php
             // get stored value or fallback
@@ -50,13 +54,6 @@
 
         <!-- Main Content Wrapper -->
         <div class="flex flex-col sm:justify-center items-center flex-1 w-full pt-6 sm:pt-12 px-4">
-            <!-- Logo -->
-            <div class="mb-6">
-                <a href="/">
-                    <x-application-logo class="w-24 h-24 fill-current text-pink-400 dark:text-pink-500 transition-transform transform hover:scale-110" />
-                </a>
-            </div>
-
             <!-- Slot Card -->
             <div class="w-full sm:max-w-md bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-8 sm:p-10 transition-transform transform hover:scale-105 border border-pink-100 dark:border-gray-700">
                 {{ $slot }}
