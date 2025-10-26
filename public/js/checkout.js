@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('successModal').addEventListener('hidden.bs.modal', function() {
             this.remove();
             // Redirect to home after modal closes
-            window.location.href = '{{ route("client.dashboard") }}';
+            window.location.href = window.CLIENT_DASHBOARD_URL;
         });
     }
 
