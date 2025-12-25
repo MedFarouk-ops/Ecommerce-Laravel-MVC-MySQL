@@ -3,15 +3,10 @@
     ------------------------------------------------------------------------------
     © 2025 Mohamed Farouk Khabir. All rights reserved.
 
-    This template is licensed for **single-use only**. 
-    The buyer is permitted to make **only one live version** of this template on the internet.
-
-    Prohibited:
-    - Reselling, redistributing, or sharing this template.
-    - Making multiple live versions or using it for multiple projects.
-
-    Unauthorized redistribution may result in legal action. 
-    By using this template, you agree to comply with the license terms.
+    Licensed under the MIT License with attribution required.
+    
+    You are free to use, modify, and distribute this software, provided that
+    proper attribution to the original author is maintained.
     ------------------------------------------------------------------------------
 -->
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
