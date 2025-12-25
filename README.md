@@ -17,6 +17,10 @@
 
 A full-featured eCommerce platform built with Laravel 12.x, offering a complete online shopping solution with advanced inventory management, multi-theme support, and comprehensive analytics.
 
+## Class Diagram
+
+![Class Diagram](assets/class_diagram.png)
+
 ## Features
 
 ### Product Management
