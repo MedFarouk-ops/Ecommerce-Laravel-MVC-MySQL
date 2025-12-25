@@ -19,7 +19,7 @@ A full-featured eCommerce platform built with Laravel 12.x, offering a complete 
 
 ## Class Diagram
 
-![Class Diagram](assets/class_diagram.png)
+![Class Diagram](assets/ClassDiagram.png)
 
 ## Features
 
