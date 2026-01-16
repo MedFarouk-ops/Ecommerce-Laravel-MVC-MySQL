@@ -45,6 +45,15 @@ class User extends Authenticatable
         ];
     }
 
+    protected static function booted()
+    {
+        static::creating(function ($user) {
+            if (empty($user->role)) {
+                $user->role = self::ROLE_CUSTOMER;
+            }
+        });
+    }
+
     // Optional helpers
     public function isAdmin(): bool
     {
