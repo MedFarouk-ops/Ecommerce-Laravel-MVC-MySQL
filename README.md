@@ -15,7 +15,7 @@
 
 ## About This Project
 
-A full-featured eCommerce platform built with Laravel 12.x, offering a complete online shopping solution with advanced inventory management, multi-theme support, and comprehensive analytics.
+A full-featured eCommerce platform built with Laravel 12.30.1, offering a complete online shopping solution with advanced inventory management, multi-theme support, and comprehensive analytics.
 
 ## Class Diagram
 
